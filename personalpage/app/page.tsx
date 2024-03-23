@@ -38,16 +38,27 @@ export default function Home() {
       </div>
       <div>
         <h1 className='text-xl'>links</h1>
-        <div className='text-sm w-20 m-2 rounded flex text-center hover:shadow-white hover:black p-2 transition-shadow duration-300 ease-in-out'>
-          <a href="https://github.com/Joseph-McGarry?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <div  className='m-2'>
+          <a href="https://github.com/Joseph-McGarry?tab=repositories" target="_blank" rel="noopener noreferrer" className='block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
+            GitHub
+          </a>
         </div>
-        <div className='text-sm w-20 m-2 rounded flex text-center hover:shadow-white hover:black p-2 transition-shadow duration-300 ease-in-out'>
-          <a href="https://www.linkedin.com/in/joseph-mcgarry" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <div style={{paddingLeft: '30px'}} className='m-2'>
+          <a href="https://www.linkedin.com/in/joseph-mcgarry" target="_blank" rel="noopener noreferrer" className='block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
+            LinkedIn
+          </a>
         </div>
-        <div className='text-sm w-20 m-2 rounded flex text-center hover:shadow-white hover:black p-2 transition-shadow duration-300 ease-in-out'>
-          <a href="https://medium.com/@dylan.e.briar/looking-for-a-graphql-caching-solution-in-bun-its-time-to-buql-up-b2742f07847f" target="_blank" rel="noopener noreferrer">Medium</a>
+        <div style={{paddingLeft: '60px'}} className='m-2'>
+          <a href="https://medium.com/@dylan.e.briar/looking-for-a-graphql-caching-solution-in-bun-its-time-to-buql-up-b2742f07847f" target="_blank" rel="noopener noreferrer" className='block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
+            Medium
+          </a>
         </div>
       </div>
+        <div>
+          <p className='text-xs pt-16 pl-10'>
+            crafted using next.js, typescript, tailwind.css & mongodb
+          </p>
+        </div>
     </main>
   );
 }
