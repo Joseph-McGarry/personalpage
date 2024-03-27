@@ -1,5 +1,8 @@
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 // import Book from '../pages/book';
+
+const Shuffle = dynamic(() => import('./shuffle'), {ssr: false});
 
 export default function Home() {
   // Split the name to isolate the "g" for styling as a button
@@ -27,14 +30,16 @@ export default function Home() {
         frontend + backend. <br></br>
          <br></br>
          <br></br>
+         nature.<br></br>
          <a className="cursor-default" href="https://www.instagram.com/vulcanistileco/" target="_blank" rel="noopener noreferrer">artist.</a>
         </p>
       </div>
       <div>
-      <h1 className="text-xl">skills = </h1>
+        <Shuffle />
+      {/* <h1 className="text-xl">skills = </h1>
         <p style={{paddingLeft: '70px'}} className='w-[450px] p-5'>
-          [ Javascript, TypeScript, React, Next.js, Node, Express, MongoDB, Mongoose, Python, HTML, CSS, SCSS, Tailwind, AJAX, Bun, PostgreSQL, GraphQL, Redis, Vite, Webpack, Jest, Supertest, React Testing Library, TypeScript, Redux, ReduxToolKit, CI/CD, AWS, Docker, Git, Github Actions ]
-        </p>
+          <Shuffle />
+        </p> */}
       </div>
       <div>
         <h1 className='text-xl'>links</h1>

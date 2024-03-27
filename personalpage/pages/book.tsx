@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { metadata } from '@/app/layout';
@@ -8,73 +8,82 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Book() {
   const [pending, setPending] = useState(false);
-  // Change to use an array of objects, each with name and message properties
   const [entries, setEntries] = useState([]);
-  const formRef = useRef(null);
+  const [message, setMessage] = useState('');
+  const messageRef = useRef(null);
+  const nameRef = useRef(null);
+
+  useEffect(() => {
+    if (messageRef.current) {
+      messageRef.current.style.height = 'auto';
+      messageRef.current.style.height = `${messageRef.current.scrollHeight}px`;
+    }
+  }, [message]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setPending(true);
 
-    // Extract the message and name from the form
-    const formData = new FormData(formRef.current);
-    const message = formData.get('entry');
-    const name = formData.get('name');
-
+    // Extract the message and name directly from state and ref
+    const name = nameRef.current.value;
+    
     // Combine the name and message into one entry
     const newEntry = { name, message };
 
     // Add the new entry to the existing list of entries
-    setEntries(prevEntries => [...prevEntries, newEntry]);
+    setEntries((prevEntries) => [...prevEntries, newEntry]);
+
+    // Clear the form fields
+    setMessage('');
+    nameRef.current.value = '';
 
     setPending(false);
-
-    // Clear the form
-    formRef.current.reset();
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-left justify-around p-14">
-      <title>joseph mcgarry</title>
-      <h1>hall of records</h1>
+    <div className="flex min-h-screen flex-col text-start items-left justify-start p-14">
+      <h1 className='text-xl mb-10'>speak your mind...</h1>
       <form
-        style={{ opacity: !pending ? 1 : 0.7 }}
         className="relative max-w-[500px]"
-        ref={formRef}
+        style={{ opacity: !pending ? 1 : 0.7 }}
         onSubmit={handleSubmit}
       >
         <input
+          ref={nameRef}
           aria-label="name"
-          placeholder="alias"
+          placeholder="name"
           disabled={pending}
           name="name"
           type="text"
+          maxLength={30}
           required
-          className="pl-4 pr-32 py-2 mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full border-neutral-300 rounded-md bg-gray-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100"
+          className=" pl-2 pr-32 py-2 mb-2 hover:shadow-white block w-full border-neutral-300 rounded-md bg-black transition-shadow duration-500 ease-in-out'"
         />
-        <input
+        <textarea
+          ref={messageRef}
           aria-label="message"
-          placeholder="piece of mind"
+          placeholder="message"
           disabled={pending}
           name="entry"
-          type="text"
+          maxLength={255}
           required
-          className="pl-4 pr-32 py-2 mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full border-neutral-300 rounded-md bg-gray-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          className="resize-none pl-2 pr-32 py-2 mt-3 hover:shadow-white block w-full border-neutral-300 rounded-md bg-black transition-shadow duration-500 ease-in-out'"
         />
         <button
-          className="flex items-center justify-center absolute right-1 top-1 px-2 py-1 font-medium h-8 bg-neutral-200 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 rounded w-16"
+          className='mt-2 block text-sm w-20 p-2 rounded text-start hover:shadow-white hover:bg-black transition-shadow duration-500 ease-in-out'
           disabled={pending}
           type="submit"
         >
-          Sign
+          sign
         </button>
       </form>
-      <div className="mt-6">
-        <h2>speak your mind</h2>
+      <div className="mt-20">
+        <h2>recorded</h2>
         <ul>
-          {/* Iterate through the entries array and display each name and message */}
           {entries.map((entry, index) => (
-            <li key={index} className="my-2 p-2 bg-gray-200 dark:bg-neutral-700 rounded">
+            <li key={index} className="m-5 my-2 p-2 bg-gray-200 dark:bg-neutral-700 rounded">
               {entry.name}: {entry.message}
             </li>
           ))}
