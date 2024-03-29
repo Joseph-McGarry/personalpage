@@ -30,30 +30,25 @@ export default function Home() {
         frontend + backend. <br></br>
          <br></br>
          <br></br>
-         nature.<br></br>
          <a className="cursor-default" href="https://www.instagram.com/vulcanistileco/" target="_blank" rel="noopener noreferrer">artist.</a>
         </p>
       </div>
       <div>
         <Shuffle />
-      {/* <h1 className="text-xl">skills = </h1>
-        <p style={{paddingLeft: '70px'}} className='w-[450px] p-5'>
-          <Shuffle />
-        </p> */}
       </div>
       <div>
-        <h1 className='text-xl'>links</h1>
-        <div  className='m-2'>
+        <h1 className='mt-10 text-xl'>links</h1>
+        <div  className='m-2 cursor-default'>
           <a href="https://github.com/Joseph-McGarry?tab=repositories" target="_blank" rel="noopener noreferrer" className='block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
             GitHub
           </a>
         </div>
-        <div style={{paddingLeft: '30px'}} className='m-2'>
+        <div style={{paddingLeft: '0px'}} className='m-2 cursor-default'>
           <a href="https://www.linkedin.com/in/joseph-mcgarry" target="_blank" rel="noopener noreferrer" className='block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
             LinkedIn
           </a>
         </div>
-        <div style={{paddingLeft: '60px'}} className='m-2'>
+        <div style={{paddingLeft: '0px'}} className='m-2 cursor-default'>
           <a href="https://medium.com/@dylan.e.briar/looking-for-a-graphql-caching-solution-in-bun-its-time-to-buql-up-b2742f07847f" target="_blank" rel="noopener noreferrer" className='block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
             Medium
           </a>
@@ -61,7 +56,7 @@ export default function Home() {
       </div>
         <div>
           <p className='text-xs pt-16 pl-10'>
-            crafted using next.js, typescript, tailwind.css & mongodb
+          © joseph mcgarry | next.js | typescript | tailwind.css | mongodb
           </p>
         </div>
     </main>
