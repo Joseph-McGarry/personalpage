@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { metadata } from '@/app/layout';
 import "../app/globals.css";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 type Entry = {
@@ -37,7 +38,7 @@ export default function Book() {
     const name = nameRef.current.value;
     
     // Combine the name and message into one entry
-    const newEntry = { name: 'example name', message: 'example message' };
+    const newEntry = { name , message };
 
     // Add the new entry to the existing list of entries
     setEntries((prevEntries) => [...prevEntries, newEntry]);
