@@ -23,7 +23,7 @@ export default function Shuffle() {
   }, []);
 
 
-  const shuffleSkills = (array) => {
+  const shuffleSkills = (array: any[]) => {
     let currentIndex = array.length, temporaryValue, randomIndex;
 
     // While there remain elements to shuffle...

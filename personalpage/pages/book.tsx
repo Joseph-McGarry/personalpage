@@ -6,12 +6,17 @@ import "../app/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+type Entry = {
+  name: string;
+  message: string;
+}
+
 export default function Book() {
   const [pending, setPending] = useState(false);
-  const [entries, setEntries] = useState([]);
+  const [entries, setEntries] = useState<Entry[]>([]);
   const [message, setMessage] = useState('');
-  const messageRef = useRef(null);
-  const nameRef = useRef(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (messageRef.current) {
@@ -20,15 +25,19 @@ export default function Book() {
     }
   }, [message]);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setPending(true);
 
+    if (!nameRef.current) {
+      console.error('nameRef.current is null');
+      return; // Optionally handle this case, e.g., by logging an error or setting an error state
+    }
     // Extract the message and name directly from state and ref
     const name = nameRef.current.value;
     
     // Combine the name and message into one entry
-    const newEntry = { name, message };
+    const newEntry = { name: 'example name', message: 'example message' };
 
     // Add the new entry to the existing list of entries
     setEntries((prevEntries) => [...prevEntries, newEntry]);
