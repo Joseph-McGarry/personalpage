@@ -2,30 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Define color variables for easy maintenance and readability */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --foreground-rgb: 255, 255, 255; /* White */
+  --background-rgb: 0, 0, 0; /* Black */
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  /* Apply the foreground and background colors using CSS custom properties */
+  color: rgb(var(--foreground-rgb)); /* Text color set to white */
+  background-color: rgb(var(--background-rgb)); /* Background color set to black */
 }
 
+/* If you have utility classes you wish to add, you can do so here */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
