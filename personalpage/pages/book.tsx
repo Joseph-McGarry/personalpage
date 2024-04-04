@@ -52,7 +52,7 @@ export default function Book() {
 
   return (
     <div className="flex min-h-screen flex-col text-start items-left justify-start p-14">
-      <h1 className='text-xl mb-10'>speak your mind...</h1>
+      <h1 className='text-xl mb-10'>guestbook coming soon</h1>
       <form
         className="relative max-w-[500px]"
         style={{ opacity: !pending ? 1 : 0.7 }}
