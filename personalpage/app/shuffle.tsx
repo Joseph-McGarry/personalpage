@@ -5,10 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const initialSkills = [
   'Javascript', 'TypeScript', 'React', 'Next.js', 'Node', 'Express', 'MongoDB',
-  'Mongoose', 'Python', 'HTML', 'CSS', 'SCSS', 'Tailwind', 'AJAX', 'Bun',
-  'PostgreSQL', 'GraphQL', 'Redis', 'Vite', 'Webpack', 'Jest', 'Supertest',
-  'TypeScript', 'Redux', 'ReduxToolKit', 'CI/CD', 'AWS',
-  'Docker', 'Git', 'Github Actions']
+  'Mongoose', 'Python', 'HTML', 'CSS', 'SCSS', 'Tailwind', 'AJAX', 'Bun', 'GraphQL',
+  'Redis','PostgreSQL', 'Vite', 'Webpack', 'Jest', 'Supertest',
+  'Redux', 'Redux ToolKit', 'CI/CD', 'AWS',
+  'Docker', 'Github Actions', 'Git' ]
 
 export default function Shuffle() {
   const [skills, setSkills] = useState(initialSkills.map((skill, index) => ({
@@ -51,8 +51,10 @@ export default function Shuffle() {
   return (
     <div>
       <button className="text-xl cursor-default" onClick={handleSkillsClick}>skills</button>
-      <div className="mt-1" style={{paddingLeft: '70px'}}>
-        <div className="w-[425px] bg-black rounded-lg"style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
+      {/* <div className="mt-1" style={{paddingLeft: '70px'}}> */}
+      <div className="mt-1 flex">
+        {/* <div className="max-w-[450px] w-full bg-black rounded-lg" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))'}}> */}
+        <div className="max-w-[450px] w-full bg-black rounded-lg px-0 py-4 sm:pl-16 pl-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '0.25rem' }}>
           <AnimatePresence>
             {skills.map((skill) => (
               <motion.div
