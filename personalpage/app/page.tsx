@@ -40,22 +40,22 @@ export default function Home() {
         <h1 className='mt-10 text-xl'>links</h1>
         {/* <div className="grid grid-cols-4 gap-x-6 w-80"> */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 w-80">
-          <div  className='m-2 cursor-default'>
-            <a href="https://github.com/Joseph-McGarry?tab=repositories" target="_blank" rel="noopener noreferrer" className='block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
+          <div  className='m-2'>
+            <a href="https://github.com/Joseph-McGarry?tab=repositories" target="_blank" rel="noopener noreferrer" className='cursor-default block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
               GitHub
             </a>
           </div>
-          <div style={{paddingLeft: '0px'}} className='m-2 cursor-default'>
-            <a href="https://www.linkedin.com/in/joseph-mcgarry" target="_blank" rel="noopener noreferrer" className='block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
+          <div style={{paddingLeft: '0px'}} className='m-2'>
+            <a href="https://www.linkedin.com/in/joseph-mcgarry" target="_blank" rel="noopener noreferrer" className='cursor-default block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
               LinkedIn
             </a>
-          </div><div style={{paddingLeft: '0px'}} className='m-2 cursor-default'>
-            <a href="https://buql.dev" target="_blank" rel="noopener noreferrer" className='block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
+          </div><div style={{paddingLeft: '0px'}} className='m-2'>
+            <a href="https://buql.dev" target="_blank" rel="noopener noreferrer" className='cursor-default block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
               BuQL
             </a>
           </div>
-          <div style={{paddingLeft: '0px'}} className='m-2 cursor-default'>
-            <a href="https://medium.com/@dylan.e.briar/looking-for-a-graphql-caching-solution-in-bun-its-time-to-buql-up-b2742f07847f" target="_blank" rel="noopener noreferrer" className='block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
+          <div style={{paddingLeft: '0px'}} className='m-2'>
+            <a href="https://medium.com/@dylan.e.briar/looking-for-a-graphql-caching-solution-in-bun-its-time-to-buql-up-b2742f07847f" target="_blank" rel="noopener noreferrer" className='cursor-default block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
               Medium
             </a>
           </div>
