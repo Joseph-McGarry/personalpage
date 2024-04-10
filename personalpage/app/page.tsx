@@ -29,7 +29,6 @@ export default function Home() {
         passionate software engineer.<br></br>
         frontend + backend. <br></br>
          <br></br>
-         <br></br>
          <a className="cursor-default" href="https://www.instagram.com/vulcanistileco/" target="_blank" rel="noopener noreferrer">artist.</a>
         </p>
       </div>
