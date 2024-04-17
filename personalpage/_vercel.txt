@@ -1,1 +1,0 @@
-vc-domain-verify=josephmcgarry.dev,0db9052bbd58169c57d9
