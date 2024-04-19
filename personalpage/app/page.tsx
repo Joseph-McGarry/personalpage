@@ -38,7 +38,7 @@ export default function Home() {
       <div >
         <h1 className='mt-10 text-xl'>links</h1>
         {/* <div className="grid grid-cols-4 gap-x-6 w-80"> */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 w-80">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 w-80">
           <div  className='m-2'>
             <a href="https://github.com/Joseph-McGarry?tab=repositories" target="_blank" rel="noopener noreferrer" className='cursor-default block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
               GitHub
@@ -58,13 +58,23 @@ export default function Home() {
               Medium
             </a>
           </div>
+          <div style={{paddingLeft: '0px'}} className='m-2'>
+            <a href="https://www.npmjs.com/package/@buql/buql" target="_blank" rel="noopener noreferrer" className='cursor-default block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
+              npm
+            </a>
+          </div>
+          <div style={{paddingLeft: '0px'}} className='m-2'>
+            <a href="https://www.youtube.com/watch?v=0uBBJrszzUE&t=5s" target="_blank" rel="noopener noreferrer" className='cursor-default block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
+              YouTube
+            </a>
+          </div>
         </div>
       </div>
         <div>
           <p className='text-xs pt-16 pl-0'>
           © joseph mcgarry <br></br>
           <br></br>
-          next.js | typescript | tailwind css | mongodb
+          next.js | typescript | tailwind css 
           </p>
         </div>
     </main>
