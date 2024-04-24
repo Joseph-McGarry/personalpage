@@ -18,6 +18,12 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/images/icon.ico" sizes="any" />
+        <link
+          rel="apple-touch-icon"
+          href="/apple-icon?<generated>"
+          type="image/<generated>"
+          sizes="<generated>"
+        />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
