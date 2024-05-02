@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import type { Metadata } from "next";
+import Head from 'next/head';
 import { Inter } from "next/font/google";
-import { metadata } from '@/app/layout';
+// import { metadata } from '../app/layout.tsx';
 import "../app/globals.css";
+import { title } from 'process';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -52,6 +53,11 @@ export default function Book() {
 
   return (
     <div className="flex min-h-screen flex-col text-start items-left justify-start p-14">
+      <Head>
+        <title> joseph mcgarry </title>
+        <link rel="icon" href="../images/icon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/images/icon.png" />
+      </Head>
       <h1 className='text-xl mb-10'>guestbook coming soon</h1>
       <form
         className="relative max-w-[500px]"

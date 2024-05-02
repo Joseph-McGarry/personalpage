@@ -40,7 +40,7 @@ export default function Home() {
         {/* <div className="grid grid-cols-4 gap-x-6 w-80"> */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 w-80">
           <div  className='m-2'>
-            <a href="https://github.com/Joseph-McGarry?tab=repositories" target="_blank" rel="noopener noreferrer" className='cursor-default block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
+            <a href="https://github.com/Joseph-McGarry" target="_blank" rel="noopener noreferrer" className='cursor-default block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
               GitHub
             </a>
           </div>
