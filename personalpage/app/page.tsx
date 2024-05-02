@@ -25,11 +25,13 @@ export default function Home() {
       <img src="/test.jpg" alt="test" className='w-64 h-auto pt-7 pb-5'></img>
       <div>
         <h1 className='text-xl'>about me</h1>
-        <p className='pl-5 pt-5 pb-5'>
+        <p className='w-84 pl-5 pt-5 pb-5'>
         passionate software engineer.<br></br>
-        frontend + backend. <br></br>
+        UI/UX obsessed. <br></br>
+        asheville, nc. <br></br>
+        full-stack.<br></br>
          <br></br>
-         <a className="cursor-default" href="https://www.instagram.com/vulcanistileco/" target="_blank" rel="noopener noreferrer">artist.</a>
+         <a className="cursor-default hover:text-black" href="https://www.instagram.com/vulcanistileco/" target="_blank" rel="noopener noreferrer">artist.</a>
         </p>
       </div>
       <div>

@@ -50,7 +50,7 @@ export default function Shuffle() {
 
   return (
     <div>
-      <button className="text-xl cursor-default" onClick={handleSkillsClick}>skills</button>
+      <button className="text-xl cursor-default hover:text-black" onClick={handleSkillsClick}>skills</button>
       {/* <div className="mt-1" style={{paddingLeft: '70px'}}> */}
       <div className="mt-1 flex">
         {/* <div className="max-w-[450px] w-full bg-black rounded-lg" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))'}}> */}
