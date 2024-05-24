@@ -11,7 +11,7 @@ return (
           i love building products and developing new features.
           <br></br>
           <br></br>
-          when i'm not behind a computer you can find me wandering the blue ridge mountains, whipping something up in the kitchen or lounging with my cat woofie.
+          when i am not behind a computer you can find me wandering the blue ridge mountains, whipping something up in the kitchen or lounging with my cat woofie.
           <br></br>
           <br></br>
           <a className="cursor-default hover:text-black" href="https://www.instagram.com/vulcanistileco/" target="_blank" rel="noopener noreferrer">artist.</a>
