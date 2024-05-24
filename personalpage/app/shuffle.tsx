@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const initialSkills = [
-  'Javascript', 'TypeScript', 'React', 'Next.js', 'Node', 'Express', 'MongoDB',
-  'Mongoose', 'Python', 'HTML', 'CSS', 'SCSS', 'Tailwind', 'AJAX', 'Bun', 'GraphQL',
-  'Redis','PostgreSQL', 'Vite', 'Webpack', 'Jest', 'Supertest',
-  'Redux', 'Redux ToolKit', 'CI/CD', 'AWS',
-  'Docker', 'Github Actions', 'Git' ]
+  'javascript', 'typescript', 'react', 'next.js', 'node', 'express', 'mongodb',
+  'mongoose', 'python', 'html', 'css', 'scss', 'tailwind', 'ajax', 'bun', 'graphql',
+  'redis','postgresql', 'vite', 'webpack', 'jest', 'supertest',
+  'redux', 'redux toolkit', 'ci/cd', 'aws',
+  'docker', 'github', 'git' ]
 
 export default function Shuffle() {
   const [skills, setSkills] = useState(initialSkills.map((skill, index) => ({
@@ -49,12 +49,12 @@ export default function Shuffle() {
   };
 
   return (
-    <div>
-      <button className="text-xl cursor-default hover:text-black" onClick={handleSkillsClick}>skills</button>
-      {/* <div className="mt-1" style={{paddingLeft: '70px'}}> */}
-      <div className="mt-1 flex">
-        {/* <div className="max-w-[450px] w-full bg-black rounded-lg" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))'}}> */}
-        <div className="max-w-[450px] w-full bg-black rounded-lg px-0 py-4 sm:pl-16 pl-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '0.25rem' }}>
+    <div className='p-2 border-2 border-white rounded w-68 md:w-96 lg:w-96 h-auto'>
+      <button className="pl-3 text-2xl  cursor-default hover:text-black" onClick={handleSkillsClick}>skills</button>
+      <div>
+        {/* <div className="max-w-[450px] w-full bg-black rounded-lg px-0 py-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '0.25rem' }}> */}
+        {/* <div className="max-w-[450px] w-full bg-black rounded-lg px-0 py-2 grid grid-cols-2 sm:grid-cols-3 gap-1"> */}
+        <div className="pt-5 pl-4 pb-5 text-md md:text-md bg-black rounded-lg px-0 py-2 grid grid-cols-3 gap-1.5 place-items-">
           <AnimatePresence>
             {skills.map((skill) => (
               <motion.div
@@ -64,7 +64,6 @@ export default function Shuffle() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: transitionDuration }}
                 layout
-                // className="p-2"
               >
                 {skill.name}
               </motion.div>
