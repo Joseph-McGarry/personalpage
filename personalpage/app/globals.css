@@ -14,9 +14,27 @@ body {
   background-color: rgb(var(--background-rgb)); /* Background color set to black */
 }
 
+.container {
+  display: flex;               /* Corresponds to items-center */
+  align-items: center;         /* Corresponds to items-center */
+  justify-content: center;     /* Ensure it's centered horizontally */
+  flex-direction: column;      /* Ensures vertical spacing */
+  width: 100%;                 /* Corresponds to w-full */
+  min-width: 16rem;            /* Corresponds to min-w-64 (64 * 0.25rem = 16rem) */
+  background-color: black;   /* Corresponds to bg-green-100 */
+  margin-top: 0;               /* For default, no margin on small screens */
+}
+
+@media (min-width: 768px) {
+  .container {
+    margin-top: 2.5rem;        /* Corresponds to md:mt-10 (10 * 0.25rem = 2.5rem) */
+  }
+}
+
 /* If you have utility classes you wish to add, you can do so here */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
+

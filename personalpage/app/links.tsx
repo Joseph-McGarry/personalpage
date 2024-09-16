@@ -3,8 +3,8 @@
 export default function Links() {
 
 return (
-    <div className='p-2 border-2 border-white rounded w-68 md:w-96 lg:w-96 h-auto' >
-        <h1 className='text-2xl pt-4 pl-4'>links</h1>
+    <div className='p-2 border-2 border-white rounded w-80 md:w-96 lg:w-96 h-auto' >
+        <h1 className='text-2xl pt-4'>LINKS</h1>
         {/* <div className="text-center items-center grid grid-cols-2 md:grid-cols-3 gap-x-1"> */}
         <div className="grid grid-cols-3 gap-x-1 place-items-center">
             <div  className='m-2'>
