@@ -9,7 +9,7 @@ export default function About() {
         as an AI Contractor at DataAnnotation, enhancing they way we interact with artificial intelligence. 
         <br></br>
         <br></br>
-        When I'm not behind a computer you can find me wandering the Blue Ridge mountains, whipping something up in the kitchen or lounging with my cat Woofie.
+        When I&#39;m not behind a computer you can find me wandering the Blue Ridge mountains, whipping something up in the kitchen or lounging with my cat Woofie.
         <br></br>
         <br></br>
         <br></br>

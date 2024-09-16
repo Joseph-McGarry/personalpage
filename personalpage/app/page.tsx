@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 // import Book from '../pages/book';
 
 const Shuffle = dynamic(() => import('./shuffle'), {ssr: false});
@@ -25,7 +26,13 @@ export default function Home() {
             {namePart2}
           </h1>
         </header>
-        <img src="/test.jpg" alt="test" className="w-80 md:w-96 lg:w-128 h-auto"></img>
+        <Image
+          src="/test.jpg"
+          alt="test"
+          width={500}  // specify width
+          height={300} // specify height
+          className="w-64 md:w-96 lg:w-128 h-auto"
+        />
       </div>
 
       <div className="flex flex-col md:flex-row items-center justify-center space-y-10 md:space-y-0 md:space-x-10 w-full max-w-5xl rounded border-2 border-white p-5">
