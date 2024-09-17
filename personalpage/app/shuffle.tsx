@@ -109,7 +109,7 @@ export default function Shuffle() {
       // const randomDuration = Math.random() * (5 - 1) + 1;
       const duration = 7;
       setTransitionDuration(duration);
-    }, 5000); // Shuffle every second (adjust as needed)
+    }, 7000); // Shuffle every second
   };
 
   // Stop the automatic shuffling

@@ -14,6 +14,17 @@ body {
   background-color: rgb(var(--background-rgb)); /* Background color set to black */
 }
 
+a {
+  background-color: transparent; /* Ensure links have transparent background */
+  color: white;
+}
+
+/* a:hover {
+  color: black; 
+  background-color: transparent; 
+}  */
+
+
 .container {
   display: flex;               /* Corresponds to items-center */
   align-items: center;         /* Corresponds to items-center */
