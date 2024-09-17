@@ -12,8 +12,6 @@ export default function About() {
         When I&#39;m not behind a computer you can find me wandering the Blue Ridge mountains, whipping something up in the kitchen or lounging with my cat Woofie.
         <br></br>
         <br></br>
-        <br></br>
-        <br></br>
         <a className="cursor-default hover:text-black" href="https://www.instagram.com/vulcanistileco/" target="_blank" rel="noopener noreferrer">Artist.</a>
       </p>
     </div>

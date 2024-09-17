@@ -25,11 +25,6 @@ body {
   margin-top: 0;               /* For default, no margin on small screens */
 }
 
-@media (min-width: 768px) {
-  .container {
-    margin-top: 2.5rem;        /* Corresponds to md:mt-10 (10 * 0.25rem = 2.5rem) */
-  }
-}
 
 /* If you have utility classes you wish to add, you can do so here */
 @layer utilities {
@@ -38,3 +33,9 @@ body {
   }
 }
 
+/* Corresponds to md:mt-10 (10 * 0.25rem = 2.5rem) */
+/* @media (min-width: 768px) {
+  .container {
+    margin-top: .5rem;        
+  } 
+}  */

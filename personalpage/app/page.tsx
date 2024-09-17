@@ -14,9 +14,9 @@ export default function Home() {
   return (
     <main className="min-h-screen w-full flex flex-col items-center justify-center p-5 md:p-10 lg:p-20 space-y-10">
       {/* Top Section (Name and Image) */}
-      <div className="flex flex-col items-center text-center space-y-4 w-full max-w-lg p-5">
+      <div className="flex flex-col items-center text-center w-full max-w-lg p-5">
         <header>
-          <h1 className="text-4xl md:text-5xl lg:text-5xl">
+          <h1 className="mb-4 text-4xl md:text-5xl lg:text-5xl">
             {namePart1}
             <Link href="/book" passHref>
               <span className="cursor-default hover:text-black" style={{ outline: 'none' }}>
@@ -35,7 +35,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="flex flex-col md:flex-row items-center justify-center space-y-10 md:space-y-0 md:space-x-10 w-full max-w-5xl rounded border-2 border-white p-5">
+      <div className="flex flex-col md:flex-row items-center justify-center space-y-10 md:space-y-0 md:space-x-5 w-full max-w-5xl rounded border-2 border-white p-5">
         {/* About Me Section */}
         <div className="flex flex-col items-center justify-center text-left w-full md:w-1/2 min-h-[400px] h-full">
           <About />

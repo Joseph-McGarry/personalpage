@@ -127,7 +127,7 @@ export default function Shuffle() {
 
   return (
     <div
-      className='container mx-auto p-2 border-2 border-white rounded w-80 lg:w-96 h-auto'
+      className='container flex justify-center items-center p-2 border-2 rounded w-80 lg:w-96 h-auto'
       onMouseEnter={stopShuffling}   // Stop shuffling on hover
       onMouseLeave={startShuffling}  // Resume shuffling when mouse leaves
     >
