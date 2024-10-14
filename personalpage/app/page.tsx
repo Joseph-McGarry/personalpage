@@ -8,8 +8,8 @@ const Links = dynamic(() => import('./links'), {ssr: false});
 const About = dynamic(() => import('./about'), {ssr: false});
 
 export default function Home() {
-  const namePart1 = 'JOSEPH Mc';
-  const namePart2 = 'ARRY';
+  const namePart1 = 'Joseph Mc';
+  const namePart2 = 'arry';
 
   return (
     <main className="min-h-screen w-full flex flex-col items-center justify-center p-5 md:p-10 lg:p-20 space-y-10">
