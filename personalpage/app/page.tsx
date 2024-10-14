@@ -54,7 +54,7 @@ export default function Home() {
       </div>
 
       <footer className="text-sm md:text-base lg:text-base text-center mt-8 mb-4">
-        © JOSEPH McGARRY <br />
+        © JOSEPH MCGARRY <br />
         next.js | typescript | tailwind css 
       </footer>
     </main>
