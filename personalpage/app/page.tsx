@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import Projects from './projects/projects';
 // import Book from '../pages/book';
 
 const Shuffle = dynamic(() => import('./shuffle'), {ssr: false});
 const Links = dynamic(() => import('./links'), {ssr: false});
 const About = dynamic(() => import('./about'), {ssr: false});
+const RandomWalk = dynamic(() => import('./projects/randomwalk/randomwalk'), {ssr: false});
 
 export default function Home() {
   const namePart1 = 'Joseph Mc';
@@ -49,6 +51,10 @@ export default function Home() {
 
 
       {/* Bottom Section (Links) */}
+      <div className="flex flex-col items-center justify-center text-center w-full max-w-lg">
+        <Projects />
+      </div>
+
       <div className="flex flex-col items-center justify-center text-center w-full max-w-lg">
         <Links />
       </div>
