@@ -1,0 +1,68 @@
+/* Flexbox container to adjust the layout for canvas and toolbar */
+/* .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh; 
+    padding: 10px;
+    box-sizing: border-box; 
+  } */
+  
+  /* Canvas will resize based on available width */
+  .canvas-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; /* Allow canvas to grow and take up space */
+  }
+  
+  canvas {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid black;
+  }
+  
+  /* Toolbar styling */
+  .toolbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    width: 250px; /* Set a default width */
+    border: 2px solid white;
+    border-radius: 5px;
+    margin: 10px;
+  }
+  
+  /* Responsive styling for smaller screens */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column; /* Stack the canvas and toolbar vertically */
+    }
+  
+    .toolbar {
+      width: 100%; /* Take full width on mobile screens */
+      margin-top: 5px;
+    }
+  
+    canvas {
+      max-width: 100%; /* Make sure canvas fits the screen width */
+      height: auto;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .toolbar {
+      padding: 5px;
+    }
+  
+    canvas {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  
