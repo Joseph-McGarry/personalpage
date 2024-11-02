@@ -188,3 +188,11 @@
 .tessellator-container .mini-box {
     background-color: black;
 }
+/* Apply a white border to the color input on small screens */
+@media (max-width: 640px) {
+    input[type="color"] {
+      border: 2px solid #ffffff; /* White border */
+      padding: 2px; /* Adds space around the color circle for visibility */
+    }
+  }
+  
