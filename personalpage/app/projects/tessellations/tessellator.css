@@ -1,0 +1,190 @@
+/* Set the container to have a black background and green text */
+.tessellator-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-color: black;
+    color: #33FF33;
+    font-family: 'Courier New', Courier, monospace;
+    position: relative;
+    min-height: 100vh;
+}
+
+.tessellator-container #tessheader {
+    font-size: 50px;
+    text-align: center;
+    color: #33FF33;
+}
+
+.tessellator-container h2 {
+    text-align: center;
+}
+
+.tessellator-container #controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.tessellator-container #controls label,
+.tessellator-container #same-color-toggle label,
+.tessellator-container #mode-selector label {
+    margin-right: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #33FF33;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.tessellator-container input,
+.tessellator-container select {
+    background-color: black;
+    color: #33FF33;
+    border: 1px solid #33FF33;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.tessellator-container input[type="range"] {
+    -webkit-appearance: none;
+    background: transparent;
+}
+
+.tessellator-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: #33FF33;
+    width: 10px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.tessellator-container input[type="range"]::-webkit-slider-runnable-track {
+    background: #004400;
+    height: 5px;
+}
+
+.tessellator-container input[type="color"] {
+    border: none;
+    background-color: black;
+}
+
+.tessellator-container #tess-button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: 2px solid #33FF33;
+    background-color: black;
+    color: #33FF33;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+}
+
+.tessellator-container #tess-button:hover {
+    background-color: #004400;
+}
+
+.tessellator-container button:hover {
+    font-weight: bold;
+}
+
+.tessellator-container .box {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #a2a2a2;
+    cursor: pointer;
+    background-color: black;
+}
+
+.tessellator-container .box2 {
+    cursor: pointer;
+}
+
+.tessellator-container .mini-grid {
+    display: grid;
+}
+
+.tessellator-container #tables-container {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+.tessellator-container #main-table,
+.tessellator-container #tessellation-table {
+    display: grid;
+}
+
+.tessellator-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0) 95%,
+        rgba(51, 255, 51, 0.05) 100%
+    );
+    background-size: 100% 2px;
+    pointer-events: none;
+}
+
+.tessellator-container #same-color-toggle label {
+    font-size: 16px;
+    cursor: pointer;
+    color: #33FF33;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.tessellator-container #mode-selector label {
+    margin-right: 10px;
+    color: #33FF33;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.tessellator-container #grid-size-value {
+    font-weight: bold;
+    margin-left: 2px;
+    color: #33FF33;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.tessellator-container #colors,
+.tessellator-container #same-color-toggle,
+.tessellator-container #grid-selector,
+.tessellator-container #mode-selector {
+    margin-bottom: 10px;
+}
+
+.tessellator-container #grid-selector {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.tessellator-container #grid-selector label {
+    margin-right: 10px;
+}
+
+.tessellator-container #grid-selector input[type="range"] {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.tessellator-container #grid-selector span {
+    min-width: 30px;
+    text-align: center;
+}
+
+.tessellator-container input[type="checkbox"],
+.tessellator-container input[type="radio"] {
+    accent-color: #33FF33;
+}
+
+.tessellator-container .mini-box {
+    background-color: black;
+}
