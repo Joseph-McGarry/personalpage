@@ -13,7 +13,7 @@ const Tessellator: React.FC = () => {
 
   // State variables
   const [gridSize, setGridSize] = useState<number>(5);
-  const [selectedColor, setSelectedColor] = useState<string>('#000000');
+  const [selectedColor, setSelectedColor] = useState<string>('#33FF33');
   const [mode, setMode] = useState<string>('draw');
   const [sameColor, setSameColor] = useState<boolean>(false);
 
