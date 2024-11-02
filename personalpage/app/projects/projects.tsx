@@ -5,7 +5,7 @@ import Image from 'next/image';
 export default function Projects() {
 
 return (
-    <div className='p-2 border-2 border-white rounded w-80 md:w-96 lg:w-96 h-auto' >
+    <div className='p-2 border-2 border-white rounded :w-[40rem] h-auto' >
         <h1 className='text-2xl pt-4'>PROJECTS</h1>
         {/* <div className="text-center items-center grid grid-cols-2 md:grid-cols-3 gap-x-1"> */}
         <div className="grid grid-cols-2 gap-x-1 place-items-center">
