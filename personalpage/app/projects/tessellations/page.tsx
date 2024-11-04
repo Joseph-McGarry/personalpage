@@ -399,7 +399,7 @@ const Tessellator: React.FC = () => {
               checked={mode === 'rotateBox'}
               onChange={handleModeChange}
             />{' '}
-            Rotate Box
+            Rotate Tess Box
           </label>
           <label>
             <input
@@ -409,7 +409,7 @@ const Tessellator: React.FC = () => {
               checked={mode === 'rotateColumn'}
               onChange={handleModeChange}
             />{' '}
-            Rotate Column
+            Rotate Tess Column
           </label>
           <label>
             <input
@@ -419,7 +419,7 @@ const Tessellator: React.FC = () => {
               checked={mode === 'rotateRow'}
               onChange={handleModeChange}
             />{' '}
-            Rotate Row
+            Rotate Tess Row
           </label>
         </div>
       </div>
@@ -460,22 +460,26 @@ const Tessellator: React.FC = () => {
       </div>
 
       <div className="text-center mt-4">
-      <button className="cursor-default rounded" 
-        id="tess-button" 
-        onClick={handleResetRotations}>
-          Reset
+        <button className="cursor-default rounded"
+          id="tess-button"
+          onClick={handleClear}>
+            Clear
         </button>
 
         <button className="cursor-default rounded"
            id="tess-button" onClick={handleDownload}>
-          Download
+            Download
         </button>
 
-        <button className="cursor-default rounded"
-          id="tess-button"
-          onClick={handleClear}>
-          Clear
+        <button className="cursor-default rounded" 
+          id="tess-button" 
+          onClick={handleResetRotations}>
+            Reset
         </button>
+
+        
+
+        
       </div>
     </div>
   );
