@@ -340,8 +340,10 @@ const Tessellator: React.FC = () => {
   };
 
   return (
+    <div>
+    <header id='tessheader'>Tessellator</header>
     <div className="tessellator-container">
-      <header id='tessheader'>Tessellator</header>
+      
       <div id="controls">
         <div id="colors">
           <label htmlFor="color-picker">Select Color:</label>
@@ -362,7 +364,7 @@ const Tessellator: React.FC = () => {
               onChange={handleSameColorToggle}
               className='order-1 transform translate-y-[4px]'
             />
-            Same Color
+            Change All Same Color
           </label>
         </div>
 
@@ -476,12 +478,9 @@ const Tessellator: React.FC = () => {
           onClick={handleResetRotations}>
             Reset
         </button>
-
-        
-
-        
       </div>
     </div>
+  </div>
   );
 };
 
