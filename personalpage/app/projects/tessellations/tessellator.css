@@ -113,13 +113,16 @@
 
 .tessellator-container #tables-container {
     display: flex;
+    justify-content: center;
     gap: 50px;
     align-items: flex-start;
 }
 
 .tessellator-container #main-table,
 .tessellator-container #tessellation-table {
-    display: grid;
+    align-self: center;
+    justify-self: center;
+    
 }
 
 .tessellator-container::before {
