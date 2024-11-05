@@ -382,7 +382,7 @@ const Tessellator: React.FC = () => {
         </div>
 
         <div id="mode-selector">
-          <label>Select Mode:</label>
+            <label>Select Mode:</label>
           <label>
             <input
               type="radio"
