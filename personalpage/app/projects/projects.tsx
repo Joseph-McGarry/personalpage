@@ -22,6 +22,9 @@ return (
                         className=" mt-4 w-64 md:w-96 lg:w-128 h-auto"
                         />
                 </Link>
+                <p className='mt-4'>
+                Generate abstract art inspired by the Random Walk mathematical theory.
+                </p>
             </div>
             {/* <div  className='m-2'>
                 <a href="" target="_blank" rel="noopener noreferrer" className='cursor-default block text-sm w-20 p-2 rounded text-center hover:shadow-white hover:bg-black transition-shadow duration-300 ease-in-out'>
@@ -38,6 +41,9 @@ return (
                         className=" mt-4 w-64 md:w-96 lg:w-128 h-auto"
                         />
                 </Link>
+                <p className='mt-4'>
+                Create mesmerizing tessellation patterns with this interactive designer.
+                </p>
             </div> 
         </div>
     </div>
