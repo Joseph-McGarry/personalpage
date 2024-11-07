@@ -341,9 +341,12 @@ const Tessellator: React.FC = () => {
 
   return (
     <div>
-    <header id='tessheader'>Tessellator</header>
+      <header id='tessheader'>
+        <a href="/">
+            Tessellator
+        </a>  
+      </header>
     <div className="tessellator-container">
-      
       <div id="controls">
         <div id="colors">
           <label htmlFor="color-picker">Select Color:</label>

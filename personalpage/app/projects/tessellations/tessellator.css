@@ -21,6 +21,17 @@
     margin-bottom: 20px;
 }
 
+#tessheader a {
+    color: #33FF33;
+}
+
+#tessheader a:hover {
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 10px;
+}
+
 .tessellator-container h2 {
     text-align: center;
 }

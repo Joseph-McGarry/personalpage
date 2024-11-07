@@ -47,7 +47,11 @@ const RandomWalkPage: React.FC = () => {
     <div className="flex flex-col md:flex-row items-start md:items-center md:justify-center md:space-x-8 space-y-8 md:space-y-0 p-4 overflow-y-auto">
       {/* Canvas */}
       <div className="flex flex-col items-center w-full md:w-auto">
-        <h1 className="text-3xl sm:text-5xl mb-4 text-center">Abstractify</h1>
+        <h1 className="text-3xl sm:text-5xl mb-4 text-center">
+          <a href="/" className="hover:underline">
+            Abstractify
+          </a>
+        </h1>
         <RandomWalk
           shape={shape}
           lineWidth={lineWidth}
