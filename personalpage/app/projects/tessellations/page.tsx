@@ -14,7 +14,7 @@ const Tessellator: React.FC = () => {
   // State variables
   const [gridSize, setGridSize] = useState<number>(5);
   const [selectedColor, setSelectedColor] = useState<string>('#33FF33');
-  const [mode, setMode] = useState<string>('draw');
+  const [mode, setMode] = useState<string>('rotateBox');
   const [sameColor, setSameColor] = useState<boolean>(false);
 
   // Mouse state refs
@@ -50,7 +50,7 @@ const Tessellator: React.FC = () => {
   // Handle grid size change directly in the onChange handler
   const handleGridSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGridSize(Number(e.target.value));
-    setMode('draw'); // Optionally reset mode when grid size changes
+    // Optionally reset mode when grid size changes
   };
 
   // Handle mode change
@@ -67,7 +67,6 @@ const Tessellator: React.FC = () => {
   const handleClear = () => {
     setMainGridState(createInitialGridState(MAX_GRID_SIZE, 'white'));
     setTessellationRotationState(createInitialGridState(MAX_GRID_SIZE, 0));
-    setMode('draw');
   };
 
   // Handle reset rotations
@@ -169,26 +168,24 @@ const Tessellator: React.FC = () => {
     row: number,
     col: number
   ) => {
-    if (mode === 'draw') {
-      e.preventDefault();
+    e.preventDefault();
 
-      isMouseDownRef.current = true;
-      isDraggingRef.current = false;
+    isMouseDownRef.current = true;
+    isDraggingRef.current = false;
 
-      const currentColor = mainGridState[row][col];
+    const currentColor = mainGridState[row][col];
 
-      if (sameColor) {
-        changeSameColorBoxes(currentColor, selectedColor);
-      } else {
-        if (clickTimeoutRef.current) {
-          clearTimeout(clickTimeoutRef.current);
-        }
-        clickTimeoutRef.current = window.setTimeout(() => {
-          if (isMouseDownRef.current && !isDraggingRef.current) {
-            toggleBox(row, col);
-          }
-        }, 0);
+    if (sameColor) {
+      changeSameColorBoxes(currentColor, selectedColor);
+    } else {
+      if (clickTimeoutRef.current) {
+        clearTimeout(clickTimeoutRef.current);
       }
+      clickTimeoutRef.current = window.setTimeout(() => {
+        if (isMouseDownRef.current && !isDraggingRef.current) {
+          toggleBox(row, col);
+        }
+      }, 0);
     }
   };
 
@@ -197,7 +194,7 @@ const Tessellator: React.FC = () => {
     row: number,
     col: number
   ) => {
-    if (mode === 'draw' && isMouseDownRef.current && !sameColor) {
+    if (isMouseDownRef.current && !sameColor) {
       e.preventDefault();
       isDraggingRef.current = true;
       paintBox(row, col);
@@ -218,31 +215,29 @@ const Tessellator: React.FC = () => {
     row: number,
     col: number
   ) => {
-    if (mode === 'draw') {
-      e.preventDefault();
+    e.preventDefault();
 
-      isMouseDownRef.current = true;
-      isDraggingRef.current = false;
+    isMouseDownRef.current = true;
+    isDraggingRef.current = false;
 
-      const currentColor = mainGridState[row][col];
+    const currentColor = mainGridState[row][col];
 
-      if (sameColor) {
-        changeSameColorBoxes(currentColor, selectedColor);
-      } else {
-        if (clickTimeoutRef.current) {
-          clearTimeout(clickTimeoutRef.current);
-        }
-        clickTimeoutRef.current = window.setTimeout(() => {
-          if (isMouseDownRef.current && !isDraggingRef.current) {
-            toggleBox(row, col);
-          }
-        }, 0);
+    if (sameColor) {
+      changeSameColorBoxes(currentColor, selectedColor);
+    } else {
+      if (clickTimeoutRef.current) {
+        clearTimeout(clickTimeoutRef.current);
       }
+      clickTimeoutRef.current = window.setTimeout(() => {
+        if (isMouseDownRef.current && !isDraggingRef.current) {
+          toggleBox(row, col);
+        }
+      }, 0);
     }
   };
 
   const handleBoxTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (mode === 'draw' && isMouseDownRef.current && !sameColor) {
+    if (isMouseDownRef.current && !sameColor) {
       e.preventDefault();
       isDraggingRef.current = true;
       const touch = e.touches[0];
@@ -386,16 +381,6 @@ const Tessellator: React.FC = () => {
 
         <div id="mode-selector">
             <label>Select Mode:</label>
-          <label>
-            <input
-              type="radio"
-              name="mode"
-              value="draw"
-              checked={mode === 'draw'}
-              onChange={handleModeChange}
-            />{' '}
-            Draw
-          </label>
           <label>
             <input
               type="radio"
