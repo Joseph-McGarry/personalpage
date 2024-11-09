@@ -45,7 +45,7 @@ export default function RootLayout({
         <link rel="icon" href="/images/icon.png" sizes="512x512" />
   
         {/* Optional: Safari Pinned Tab (using the same icon if SVG isn't available) */}
-        <link rel="mask-icon" href="/images/icon.png" color="#5bbad5" />
+        <link rel="mask-icon" href="/images/icon.svg" color="#000000" />
   
         {/* Additional Apple Meta Tags */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
