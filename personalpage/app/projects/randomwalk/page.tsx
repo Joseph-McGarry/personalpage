@@ -1,5 +1,4 @@
 'use client';
-
 import { useState, useRef } from 'react';
 import RandomWalk from './randomwalk';
 import './random.css'; // Adjust path as necessary
@@ -12,10 +11,12 @@ const RandomWalkPage: React.FC = () => {
   const [speed, setSpeed] = useState(100);
   const [bgColor, setBgColor] = useState('#ffffff'); // Background color
   const [isRunning, setIsRunning] = useState(false); // Controls the random walk
+  const [reset, setReset] = useState(false); // New state to trigger reset
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   // Medium gray for selected shapes
   const selectedColor = 'bg-gray-500';
+
   // White for unselected shapes
   const unselectedColor = 'bg-white';
 
@@ -27,42 +28,69 @@ const RandomWalkPage: React.FC = () => {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        ctx.fillStyle = bgColor; // Use the current background color
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
     }
+    // Trigger reset
+    setReset(true);
+    // Reset 'reset' state back to false after a short delay
+    setTimeout(() => setReset(false), 0);
   };
 
   // Download canvas as image
   const handleDownload = () => {
     if (canvasRef.current) {
+      const canvas = canvasRef.current;
+
+      // Create a temporary canvas
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      const tempCtx = tempCanvas.getContext('2d');
+      if (!tempCtx) return;
+
+      // Fill the temporary canvas with the background color
+      tempCtx.fillStyle = bgColor;
+      tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+      // Draw the original canvas onto the temporary canvas
+      tempCtx.drawImage(canvas, 0, 0);
+
+      // Create a link and download the temporary canvas
       const link = document.createElement('a');
-      link.href = canvasRef.current.toDataURL('image/png');
+      link.href = tempCanvas.toDataURL('image/png');
       link.download = 'random-walk.png';
       link.click();
     }
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-start md:items-center md:justify-center md:space-x-8 space-y-8 md:space-y-0 p-4 overflow-y-auto">
-      {/* Canvas */}
-      <div className="flex flex-col items-center w-full md:w-auto">
-        <h1 className="text-3xl sm:text-5xl mb-4 text-center">
-          <a href="/" className="hover:underline">
-            Abstractify
-          </a>
-        </h1>
-        <RandomWalk
-          shape={shape}
-          lineWidth={lineWidth}
-          distance={distance}
-          angleMode={angleMode}
-          speed={speed}
-          isRunning={isRunning}
-          bgColor={bgColor}
-          canvasRef={canvasRef} // Pass the canvas ref to RandomWalk
-        />
-      </div>
+      <div className="flex flex-col md:flex-row items-start md:items-center md:justify-center md:space-x-8 space-y-8 md:space-y-0 p-4 overflow-y-auto">
+        {/* Canvas */}
+        <div className="flex flex-col items-center w-full md:w-auto">
+          <h1 className="text-3xl sm:text-5xl mb-4 text-center">
+            <a href="/" className="hover:underline">
+              Abstractify
+            </a>
+          </h1>
+          <div
+            className="canvas-container"
+            style={{ backgroundColor: bgColor }}
+          >
+            <RandomWalk
+              shape={shape}
+              lineWidth={lineWidth}
+              distance={distance}
+              angleMode={angleMode}
+              speed={speed}
+              isRunning={isRunning}
+              canvasRef={canvasRef} // Pass the canvas ref to RandomWalk
+              reset={reset} // Pass the reset prop
+            />
+          </div>
+        </div>
+
 
       {/* Toolbar */}
       <div className="p-4 border-2 rounded border-gray-300 flex flex-col space-y-4 w-full md:w-80">

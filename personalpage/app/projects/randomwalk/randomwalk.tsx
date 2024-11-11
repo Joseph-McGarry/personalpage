@@ -1,5 +1,5 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface RandomWalkProps {
   shape: string;
@@ -7,9 +7,9 @@ interface RandomWalkProps {
   distance: number;
   angleMode: string;
   speed: number;
-  isRunning: boolean; // Prop to control start/stop
-  canvasRef: React.RefObject<HTMLCanvasElement>; // Pass the canvas ref
-  bgColor: string; // Background color
+  isRunning: boolean;
+  canvasRef: React.RefObject<HTMLCanvasElement>;
+  reset: boolean; // New prop to trigger reset
 }
 
 const RandomWalk: React.FC<RandomWalkProps> = ({
@@ -20,7 +20,7 @@ const RandomWalk: React.FC<RandomWalkProps> = ({
   speed,
   isRunning,
   canvasRef,
-  bgColor,
+  reset,
 }) => {
   const randomColor = (): string => {
     const r = Math.floor(Math.random() * 256);
@@ -29,79 +29,118 @@ const RandomWalk: React.FC<RandomWalkProps> = ({
     return `rgb(${r},${g},${b})`;
   };
 
-  // New useEffect to initialize the canvas with the background color
+  const positionRef = useRef<{ x: number; y: number } | null>(null);
+  const intervalIdRef = useRef<number | null>(null);
+
+  // Initialize the canvas on mount
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    // Set the initial position to the center
+    positionRef.current = { x: canvas.width / 2, y: canvas.height / 2 };
+  }, [canvasRef]);
+
+  // Reset position when 'reset' prop changes
+  useEffect(() => {
+    if (!reset) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    positionRef.current = { x: canvas.width / 2, y: canvas.height / 2 };
+  }, [reset, canvasRef]);
+
+  // Random walk animation
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Fill the canvas with the background color
-    ctx.fillStyle = bgColor;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-  }, [bgColor, canvasRef]);
+    if (!isRunning) {
+      // Clear any existing interval
+      if (intervalIdRef.current !== null) {
+        clearInterval(intervalIdRef.current);
+        intervalIdRef.current = null;
+      }
+      return;
+    }
 
-  // Existing useEffect for the random walk animation
-  useEffect(() => {
-    if (!isRunning) return; // Only run when isRunning is true
-
-    const canvas = canvasRef.current;
-    if (!canvas) return; // Check if canvas is available
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let x = canvas.width / 2;
-    let y = canvas.height / 2;
+    if (!positionRef.current) {
+      positionRef.current = { x: canvas.width / 2, y: canvas.height / 2 };
+    }
 
     ctx.lineWidth = lineWidth;
 
-    const drawShape = (x: number, y: number) => {
-      ctx.beginPath();
-      if (shape === 'circle') {
-        ctx.arc(x, y, 10, 0, 2 * Math.PI);
-      } else if (shape === 'square' || shape === 'rectangle') {
-        const width = shape === 'square' ? 20 : 30;
-        ctx.rect(x - width / 2, y - width / 2, width, 20);
-      } else if (shape === 'triangle') {
-        ctx.moveTo(x, y - 15);
-        ctx.lineTo(x - 15, y + 15);
-        ctx.lineTo(x + 15, y + 15);
-        ctx.closePath();
-      }
-      ctx.stroke();
-    };
+    // Draw the first shape at the starting position
+    drawShape(positionRef.current.x, positionRef.current.y);
 
     const randomWalk = () => {
+      if (!positionRef.current) return;
+
+      // Compute new position
       const angle =
         angleMode === 'random'
           ? Math.random() * 2 * Math.PI
           : (Math.floor(Math.random() * 4) * Math.PI) / 2;
-      x += Math.cos(angle) * distance;
-      y += Math.sin(angle) * distance;
+      const x = positionRef.current.x + Math.cos(angle) * distance;
+      const y = positionRef.current.y + Math.sin(angle) * distance;
 
-      ctx.strokeStyle = randomColor();
+      // Update position
+      positionRef.current = { x, y };
+
+      // Draw the shape at the new position
       drawShape(x, y);
     };
 
-    const intervalId = setInterval(randomWalk, speed);
+    // Start the random walk interval
+    intervalIdRef.current = window.setInterval(randomWalk, speed);
 
-    return () => clearInterval(intervalId);
-  }, [
-    shape,
-    lineWidth,
-    distance,
-    angleMode,
-    speed,
-    isRunning,
-    canvasRef,
-  ]);
+    return () => {
+      if (intervalIdRef.current !== null) {
+        clearInterval(intervalIdRef.current);
+        intervalIdRef.current = null;
+      }
+    };
+  }, [shape, lineWidth, distance, angleMode, speed, isRunning, canvasRef]);
+
+  const drawShape = (x: number, y: number) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    ctx.beginPath();
+    ctx.strokeStyle = randomColor();
+    ctx.fillStyle = randomColor();
+
+    if (shape === 'circle') {
+      ctx.arc(x, y, lineWidth / 2, 0, 2 * Math.PI);
+      ctx.fill();
+    } else if (shape === 'square') {
+      ctx.fillRect(x - lineWidth / 2, y - lineWidth / 2, lineWidth, lineWidth);
+    } else if (shape === 'rectangle') {
+      ctx.fillRect(
+        x - lineWidth / 2,
+        y - lineWidth / 4,
+        lineWidth,
+        lineWidth / 2
+      );
+    } else if (shape === 'triangle') {
+      ctx.moveTo(x, y - lineWidth / 2);
+      ctx.lineTo(x - lineWidth / 2, y + lineWidth / 2);
+      ctx.lineTo(x + lineWidth / 2, y + lineWidth / 2);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.closePath();
+  };
 
   return (
     <canvas
       ref={canvasRef}
       width={1000}
       height={800}
-      style={{ border: '1px solid black' }}
+      style={{ border: '1px solid black', backgroundColor: 'transparent' }}
     />
   );
 };
