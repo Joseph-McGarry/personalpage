@@ -194,13 +194,15 @@ const RandomWalkPage: React.FC = () => {
           <h3 className="text-lg mb-2 text-center">Speed</h3>
           <input
             type="range"
-            min="10"
-            max="500"
-            value={speed}
-            onChange={(e) => setSpeed(Number(e.target.value))}
+            min="0"
+            max="100"
+            value={100 - ((speed - 10) / (500 - 10)) * 100} // Calculate reversed value
+            onChange={(e) =>
+              setSpeed(500 - (Number(e.target.value) / 100) * (500 - 10))
+            }
             className="custom-slider speed"
           />
-          <span className="text-center block mt-2">{speed}ms</span>
+          <span className="text-center block mt-2">{speed.toFixed(0)}ms</span>
         </div>
 
 
