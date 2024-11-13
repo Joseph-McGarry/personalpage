@@ -150,8 +150,7 @@ const RandomWalk: React.FC<RandomWalkProps> = ({
       // Stroke the shape's outline
       ctx.stroke();
     }
-  };
-
+  }
   return (
     <canvas
       ref={canvasRef}

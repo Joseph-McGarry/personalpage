@@ -241,7 +241,7 @@ const RandomWalkPage: React.FC = () => {
                 onChange={() => setFullness('filled')}
                 className="mr-2"
               />
-              Filled
+              Solid
             </label>
             <label className="flex items-center">
               <input
@@ -337,3 +337,5 @@ const RandomWalkPage: React.FC = () => {
 };
 
 export default RandomWalkPage;
+
+
