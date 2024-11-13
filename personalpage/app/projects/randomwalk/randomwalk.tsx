@@ -4,23 +4,29 @@ import { useEffect, useRef } from 'react';
 interface RandomWalkProps {
   shape: string;
   lineWidth: number;
+  shapeSize: number;
   distance: number;
   angleMode: string;
   speed: number;
   isRunning: boolean;
   canvasRef: React.RefObject<HTMLCanvasElement>;
-  reset: boolean; // New prop to trigger reset
+  reset: boolean;
+  fullness: string;
+  bgColor: string; 
 }
 
 const RandomWalk: React.FC<RandomWalkProps> = ({
   shape,
   lineWidth,
+  shapeSize,
   distance,
   angleMode,
   speed,
   isRunning,
   canvasRef,
   reset,
+  fullness,
+  bgColor,
 }) => {
   const randomColor = (): string => {
     const r = Math.floor(Math.random() * 256);
@@ -31,23 +37,22 @@ const RandomWalk: React.FC<RandomWalkProps> = ({
 
   const positionRef = useRef<{ x: number; y: number } | null>(null);
   const intervalIdRef = useRef<number | null>(null);
+  const fullnessRef = useRef<string>(fullness);
 
-  // Initialize the canvas on mount
+  useEffect(() => {
+    fullnessRef.current = fullness;
+  }, [fullness]);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
     // Set the initial position to the center
     positionRef.current = { x: canvas.width / 2, y: canvas.height / 2 };
   }, [canvasRef]);
-
-  // Reset position when 'reset' prop changes
-  useEffect(() => {
-    if (!reset) return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    positionRef.current = { x: canvas.width / 2, y: canvas.height / 2 };
-  }, [reset, canvasRef]);
 
   // Random walk animation
   useEffect(() => {
@@ -62,17 +67,14 @@ const RandomWalk: React.FC<RandomWalkProps> = ({
         clearInterval(intervalIdRef.current);
         intervalIdRef.current = null;
       }
+      // Reset position to center when stopped
+      positionRef.current = { x: canvas.width / 2, y: canvas.height / 2 };
       return;
     }
 
     if (!positionRef.current) {
       positionRef.current = { x: canvas.width / 2, y: canvas.height / 2 };
     }
-
-    ctx.lineWidth = lineWidth;
-
-    // Draw the first shape at the starting position
-    drawShape(positionRef.current.x, positionRef.current.y);
 
     const randomWalk = () => {
       if (!positionRef.current) return;
@@ -101,7 +103,7 @@ const RandomWalk: React.FC<RandomWalkProps> = ({
         intervalIdRef.current = null;
       }
     };
-  }, [shape, lineWidth, distance, angleMode, speed, isRunning, canvasRef]);
+  }, [shape, lineWidth, shapeSize, distance, angleMode, speed, isRunning, canvasRef]);
 
   const drawShape = (x: number, y: number) => {
     const canvas = canvasRef.current;
@@ -110,29 +112,44 @@ const RandomWalk: React.FC<RandomWalkProps> = ({
     if (!ctx) return;
 
     ctx.beginPath();
-    ctx.strokeStyle = randomColor();
-    ctx.fillStyle = randomColor();
 
-    if (shape === 'circle') {
-      ctx.arc(x, y, lineWidth / 2, 0, 2 * Math.PI);
-      ctx.fill();
-    } else if (shape === 'square') {
-      ctx.fillRect(x - lineWidth / 2, y - lineWidth / 2, lineWidth, lineWidth);
-    } else if (shape === 'rectangle') {
-      ctx.fillRect(
-        x - lineWidth / 2,
-        y - lineWidth / 4,
-        lineWidth,
-        lineWidth / 2
-      );
-    } else if (shape === 'triangle') {
-      ctx.moveTo(x, y - lineWidth / 2);
-      ctx.lineTo(x - lineWidth / 2, y + lineWidth / 2);
-      ctx.lineTo(x + lineWidth / 2, y + lineWidth / 2);
-      ctx.closePath();
-      ctx.fill();
+    if (fullnessRef.current === 'filled') {
+      // "Filled" Mode: Fill the shape with a random color, no outline
+      ctx.fillStyle = randomColor();
+    } else {
+      // "Outlined" Mode: Only draw the outline with a random color
+      ctx.strokeStyle = randomColor();
+      ctx.lineWidth = lineWidth;
     }
-    ctx.closePath();
+
+    // Define the shape path based on the selected shape
+    switch (shape) {
+      case 'circle':
+        ctx.arc(x, y, shapeSize / 2, 0, 2 * Math.PI); // Circle
+        break;
+      case 'square':
+        ctx.rect(x - shapeSize / 2, y - shapeSize / 2, shapeSize, shapeSize); // Square
+        break;
+      case 'rectangle':
+        ctx.rect(x - shapeSize / 2, y - shapeSize / 4, shapeSize, shapeSize / 2); // Rectangle
+        break;
+      case 'triangle':
+        ctx.moveTo(x, y - shapeSize / 2); // Triangle vertices
+        ctx.lineTo(x - shapeSize / 2, y + shapeSize / 2);
+        ctx.lineTo(x + shapeSize / 2, y + shapeSize / 2);
+        ctx.closePath();
+        break;
+      default:
+        break;
+    }
+
+    if (fullnessRef.current === 'filled') {
+      // Fill the shape with the random color
+      ctx.fill();
+    } else {
+      // Stroke the shape's outline
+      ctx.stroke();
+    }
   };
 
   return (

@@ -1,4 +1,4 @@
-  #angle-selector {
+  #random-selector {
       appearance: none;
       width: 15px;
       height: 15px;
@@ -6,7 +6,7 @@
       border-radius: 50%; /* Round shape for radio button */
       background-color: white;
   }
-  #angle-selector:checked {
+  #random-selector:checked {
     /* background-color: #007bff;  */
     background-color: #6b7280;
     border-color: white; /* Blue border when checked */

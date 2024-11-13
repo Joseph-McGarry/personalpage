@@ -1,13 +1,15 @@
 'use client';
 import { useState, useRef } from 'react';
 import RandomWalk from './randomwalk';
-import './random.css'; // Adjust path as necessary
+import './random.css'; 
 
 const RandomWalkPage: React.FC = () => {
   const [shape, setShape] = useState<string>('circle'); // Default shape is 'circle'
   const [lineWidth, setLineWidth] = useState(20);
+  const [shapeSize, setShapeSize] = useState(40); // Default shape size
   const [distance, setDistance] = useState(30);
   const [angleMode, setAngleMode] = useState('random');
+  const [fullness, setFullness] = useState<string>('filled'); // Default fullness is 'filled'
   const [speed, setSpeed] = useState(100);
   const [bgColor, setBgColor] = useState('#ffffff'); // Background color
   const [isRunning, setIsRunning] = useState(false); // Controls the random walk
@@ -23,6 +25,7 @@ const RandomWalkPage: React.FC = () => {
   const handleStart = () => setIsRunning(true);
   const handleStop = () => setIsRunning(false);
 
+  // Update the handleClear function in RandomWalkPage.tsx to remove the background fill when clearing
   const handleClear = () => {
     if (canvasRef.current) {
       const canvas = canvasRef.current;
@@ -66,31 +69,33 @@ const RandomWalkPage: React.FC = () => {
   };
 
   return (
-      <div className="flex flex-col md:flex-row items-start md:items-center md:justify-center md:space-x-8 space-y-8 md:space-y-0 p-4 overflow-y-auto">
-        {/* Canvas */}
-        <div className="flex flex-col items-center w-full md:w-auto">
-          <h1 className="text-3xl sm:text-5xl mb-4 text-center">
-            <a href="/" className="hover:underline">
-              Abstractify
-            </a>
-          </h1>
-          <div
-            className="canvas-container"
-            style={{ backgroundColor: bgColor }}
-          >
-            <RandomWalk
-              shape={shape}
-              lineWidth={lineWidth}
-              distance={distance}
-              angleMode={angleMode}
-              speed={speed}
-              isRunning={isRunning}
-              canvasRef={canvasRef} // Pass the canvas ref to RandomWalk
-              reset={reset} // Pass the reset prop
-            />
-          </div>
+    <div className="flex flex-col md:flex-row items-start md:items-center md:justify-center md:space-x-8 space-y-8 md:space-y-0 p-4 overflow-y-auto">
+      {/* Canvas */}
+      <div className="flex flex-col items-center w-full md:w-auto">
+        <h1 className="text-3xl sm:text-5xl mb-4 text-center">
+          <a href="/" className="hover:underline">
+            Abstractify
+          </a>
+        </h1>
+        <div
+          className="canvas-container"
+          style={{ backgroundColor: bgColor }}
+        >
+          <RandomWalk
+            shape={shape}
+            lineWidth={lineWidth}
+            shapeSize={shapeSize}
+            distance={distance}
+            angleMode={angleMode}
+            speed={speed}
+            isRunning={isRunning}
+            canvasRef={canvasRef} // Pass the canvas ref to RandomWalk
+            reset={reset} // Pass the reset prop
+            fullness={fullness} // Pass the fullness prop
+            bgColor={bgColor}   // Pass the bgColor prop
+          />
         </div>
-
+      </div>
 
       {/* Toolbar */}
       <div className="p-4 border-2 rounded border-gray-300 flex flex-col space-y-4 w-full md:w-80">
@@ -100,7 +105,6 @@ const RandomWalkPage: React.FC = () => {
         <div>
           <h3 className="text-lg mb-2 text-center">Shape</h3>
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 place-items-center gap-4">
-            
             {/* Circle */}
             <div
               onClick={() => setShape('circle')}
@@ -108,26 +112,28 @@ const RandomWalkPage: React.FC = () => {
                 shape === 'circle' ? selectedColor : unselectedColor
               }`}
               style={{
-                // border: shape === 'circle' ? '1px solid transparent' : '1px solid transparent',
                 border: 'none',
-                filter: shape === 'circle' ? 'drop-shadow(0 0 8px rgb(255, 255, 255)) drop-shadow(0 0 1px rgb(255, 255, 255))'
-                : 'none',
+                filter:
+                  shape === 'circle'
+                    ? 'drop-shadow(0 0 8px rgb(255, 255, 255)) drop-shadow(0 0 1px rgb(255, 255, 255))'
+                    : 'none',
               }}
             ></div>
 
             {/* Square */}
-              <div
-                onClick={() => setShape('square')}
-                className={`w-8 h-8 cursor-pointer ${
-                  shape === 'square' ? selectedColor : unselectedColor
-                }`}
-                style={{
-                  border: "none",
-                  filter: shape === 'square' ? 'drop-shadow(0 0 8px rgb(255, 255, 255)) drop-shadow(0 0 1px rgb(255, 255, 255))'
-                  : 'none',
-                }}
-              ></div>
-
+            <div
+              onClick={() => setShape('square')}
+              className={`w-8 h-8 cursor-pointer ${
+                shape === 'square' ? selectedColor : unselectedColor
+              }`}
+              style={{
+                border: "none",
+                filter:
+                  shape === 'square'
+                    ? 'drop-shadow(0 0 8px rgb(255, 255, 255)) drop-shadow(0 0 1px rgb(255, 255, 255))'
+                    : 'none',
+              }}
+            ></div>
 
             {/* Rectangle */}
             <div
@@ -137,8 +143,10 @@ const RandomWalkPage: React.FC = () => {
               }`}
               style={{
                 border: "none",
-                filter: shape === 'rectangle' ? 'drop-shadow(0 0 8px rgb(255, 255, 255)) drop-shadow(0 0 1px rgb(255, 255, 255))'
-                : 'none',
+                filter:
+                  shape === 'rectangle'
+                    ? 'drop-shadow(0 0 8px rgb(255, 255, 255)) drop-shadow(0 0 1px rgb(255, 255, 255))'
+                    : 'none',
               }}
             ></div>
 
@@ -153,9 +161,10 @@ const RandomWalkPage: React.FC = () => {
                 borderRight: '15px solid transparent',
                 borderBottom:
                   shape === 'triangle' ? '30px solid #6b7280' : '30px solid white',
-                filter: shape === 'triangle'
-                  ? 'drop-shadow(0 0 8px rgb(255, 255, 255)) drop-shadow(0 0 1px rgb(255, 255, 255))'
-                  : 'none',
+                filter:
+                  shape === 'triangle'
+                    ? 'drop-shadow(0 0 8px rgb(255, 255, 255)) drop-shadow(0 0 1px rgb(255, 255, 255))'
+                    : 'none',
               }}
             ></div>
           </div>
@@ -173,6 +182,20 @@ const RandomWalkPage: React.FC = () => {
             className="custom-slider line-width"
           />
           <span className="text-center block mt-2">{lineWidth}px</span>
+        </div>
+
+        {/* Shape Size Selector */}
+        <div className="mb-4">
+          <h3 className="text-lg mb-2 text-center">Shape Size</h3>
+          <input
+            type="range"
+            min="10"
+            max="200"
+            value={shapeSize}
+            onChange={(e) => setShapeSize(Number(e.target.value))}
+            className="custom-slider shape-size"
+          />
+          <span className="text-center block mt-2">{shapeSize}px</span>
         </div>
 
         {/* Movement Distance Selector */}
@@ -205,6 +228,34 @@ const RandomWalkPage: React.FC = () => {
           <span className="text-center block mt-2">{speed.toFixed(0)}ms</span>
         </div>
 
+        {/* Fullness Selector */}
+        <div>
+          <h3 className="text-lg mb-2 text-center">Fullness</h3>
+          <div className="flex flex-row items-center justify-center md:space-x-4 space-x-2">
+            <label className="flex items-center">
+              <input
+                id="random-selector"
+                type="radio"
+                value="filled"
+                checked={fullness === 'filled'}
+                onChange={() => setFullness('filled')}
+                className="mr-2"
+              />
+              Filled
+            </label>
+            <label className="flex items-center">
+              <input
+                id="random-selector"
+                type="radio"
+                value="outlined"
+                checked={fullness === 'outlined'}
+                onChange={() => setFullness('outlined')}
+                className="mr-2"
+              />
+              Hollow
+            </label>
+          </div>
+        </div>
 
         {/* Angle Mode Selector */}
         <div>
@@ -212,7 +263,7 @@ const RandomWalkPage: React.FC = () => {
           <div className="flex flex-row items-center justify-center md:space-x-4 space-x-2">
             <label className="flex items-center">
               <input
-                id="angle-selector"
+                id="random-selector"
                 type="radio"
                 value="right-angles"
                 checked={angleMode === 'right-angles'}
@@ -223,7 +274,7 @@ const RandomWalkPage: React.FC = () => {
             </label>
             <label className="flex items-center">
               <input
-                id="angle-selector"
+                id="random-selector"
                 type="radio"
                 value="random"
                 checked={angleMode === 'random'}
@@ -246,12 +297,11 @@ const RandomWalkPage: React.FC = () => {
           />
         </div>
 
-        {/* Start, Stop, Download Buttons */}
-        {/* <div className="flex flex-wrap gap-2 justify-center"> */}
-        <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 place-items-center  gap-4">
+        {/* Start, Stop, Clear, Download Buttons */}
+        <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 place-items-center gap-4">
           <button
             onClick={handleStart}
-            className="w-full md:flex-1  px-4 py-2 bg-green-200 text-black rounded hover:bg-green-300"
+            className="w-full md:flex-1 px-4 py-2 bg-green-200 text-black rounded hover:bg-green-300"
             style={{ minWidth: '45%' }}
           >
             Start
@@ -275,7 +325,7 @@ const RandomWalkPage: React.FC = () => {
 
           <button
             onClick={handleDownload}
-            className="w-full md:flex-1 px-4 py-2 bg-blue-200 text-black rounded  hover:bg-blue-300"
+            className="w-full md:flex-1 px-4 py-2 bg-blue-200 text-black rounded hover:bg-blue-300"
             style={{ minWidth: '45%' }}
           >
             Download
