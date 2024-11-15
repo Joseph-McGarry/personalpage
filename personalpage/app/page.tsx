@@ -32,12 +32,12 @@ export default function Home() {
       <Image
           src="/joe.jpeg"
           alt="joe"
-          width={500}  // specify width
-          height={300} // specify height
-          // className="w-64 md:w-96 lg:w-128 h-auto"
+          width={500}  
+          height={300} 
           className="w-72 md:w-[28rem] lg:w-[32rem] h-auto"
         />
       <div className="flex flex-col md:flex-row items-center justify-center space-y-10 md:space-y-0 md:space-x-5 w-full max-w-5xl rounded border-2 border-white p-5">
+        
         {/* About Me Section */}
         <div className="flex flex-col items-center justify-center text-left w-full md:w-1/2 min-h-[400px] h-full">
           <About />
@@ -48,7 +48,6 @@ export default function Home() {
           <Shuffle />
         </div>
       </div>
-
 
       {/* Bottom Section (Links) */}
       <div className="flex flex-col items-center justify-center text-center w-full max-w-lg">
