@@ -380,7 +380,7 @@ const Tessellator: React.FC = () => {
         </div>
 
         <div id="mode-selector">
-            <label>Select Mode:</label>
+            <label>Tessellation Grid:</label>
           <label>
             <input
               type="radio"
@@ -389,7 +389,7 @@ const Tessellator: React.FC = () => {
               checked={mode === 'rotateBox'}
               onChange={handleModeChange}
             />{' '}
-            Rotate Tess Box
+            Rotate Box
           </label>
           <label>
             <input
@@ -399,7 +399,7 @@ const Tessellator: React.FC = () => {
               checked={mode === 'rotateColumn'}
               onChange={handleModeChange}
             />{' '}
-            Rotate Tess Column
+            Rotate Column
           </label>
           <label>
             <input
@@ -409,7 +409,7 @@ const Tessellator: React.FC = () => {
               checked={mode === 'rotateRow'}
               onChange={handleModeChange}
             />{' '}
-            Rotate Tess Row
+            Rotate Row
           </label>
         </div>
       </div>

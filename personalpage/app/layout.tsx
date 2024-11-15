@@ -14,20 +14,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // return (
-  //   <html lang="en">
-  //     <head>
-  //       <link rel="icon" href="/images/icon.ico" sizes="any" />
-  //       <link
-  //         rel="apple-touch-icon"
-  //         href="/images/icon.png"
-  //         type="image/<generated>"
-  //         sizes="<generated>"
-  //       />
-  //     </head>
-  //     <body className={inter.className}>{children}</body>
-  //   </html>
-  // );
+  
   return (
     <html lang="en">
       <head>

@@ -14,9 +14,9 @@ export default function Home() {
   const namePart2 = 'arry';
 
   return (
-    <main className="min-h-screen w-full flex flex-col items-center justify-center p-5 md:p-10 lg:p-10 space-y-10">
+    <main className="min-h-screen w-full flex flex-col items-center justify-center p-5 md:p-10 lg:p-10 space-y-2 sm:space-y-3  md:space-y-5 lg:space-y-10">
       {/* Top Section (Name and Image) */}
-      <div className="flex flex-col items-center text-center w-full max-w-lg p-5">
+      <div className="flex flex-col items-center text-center w-full max-w-lg">
         <header>
           <h1 className="text-4xl md:text-5xl lg:text-5xl">
             {namePart1}
@@ -30,12 +30,12 @@ export default function Home() {
         </header>
       </div>
       <Image
-          src="/test.jpg"
-          alt="test"
+          src="/joe.jpeg"
+          alt="joe"
           width={500}  // specify width
           height={300} // specify height
           // className="w-64 md:w-96 lg:w-128 h-auto"
-          className="w-72 md:w-[28rem] lg:w-[36rem] h-auto"
+          className="w-72 md:w-[28rem] lg:w-[32rem] h-auto"
         />
       <div className="flex flex-col md:flex-row items-center justify-center space-y-10 md:space-y-0 md:space-x-5 w-full max-w-5xl rounded border-2 border-white p-5">
         {/* About Me Section */}
