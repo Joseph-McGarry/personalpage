@@ -2,12 +2,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const initialSkills = [
-  'javascript', 'typescript', 'react', 'next.js', 'node', 'express', 'mongodb',
-  'mongoose', 'python', 'html', 'css', 'scss', 'tailwind', 'ajax', 'bun', 'graphql',
-  'redis', 'postgresql', 'vite', 'webpack', 'jest', 'supertest',
-  'redux', 'redux toolkit', 'ci/cd', 'aws', 'docker', 'github', 'git'
-];
+const initialSkills = ["Javascript", "TypeScript", "Python", "React", "Next.js", "Node.js", "Express.js", 
+"Redux", "ReduxToolKit", "AJAX", "MongoDB", "Mongoose", "SQL", "PostgreSQL", "Redis", "HTML", 
+"CSS", "SCSS", "Tailwind CSS", "Webpack", "Vite", "Jest", "Supertest", "REST API", 
+"CI/CD", "AWS", "Docker", "Git", "Github Actions", "GraphQL", "Bun","AI", "Prompt Engineering"];
 
 export default function Shuffle() {
   const [skills, setSkills] = useState(initialSkills.map((skill, index) => ({
@@ -60,7 +58,7 @@ export default function Shuffle() {
 
   return (
     <div
-      className='container flex justify-center items-center p-2 border-2 rounded w-80 lg:w-96 h-auto'
+      className='container flex justify-center items-center p-2 rounded border-2 w-80 lg:w-96'
       onMouseEnter={stopShuffling}   // Stop shuffling on hover
       onMouseLeave={startShuffling}  // Resume shuffling when mouse leaves
     >

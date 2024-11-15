@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <main className="min-h-screen w-full flex flex-col items-center justify-center p-5 md:p-10 lg:p-10 space-y-2 sm:space-y-3  md:space-y-5 lg:space-y-10">
       {/* Top Section (Name and Image) */}
-      <div className="flex flex-col items-center text-center w-full max-w-lg">
+      <div className="flex flex-col items-center text-center w-full max-w-lg"> 
         <header>
           <h1 className="text-4xl md:text-5xl lg:text-5xl">
             {namePart1}
@@ -44,7 +44,7 @@ export default function Home() {
         </div>
 
         {/* Skills Section */}
-        <div className="flex flex-col items-center justify-center text-left w-full md:w-1/2 min-h-[400px] h-full">
+        <div className="flex flex-col items-center justify-center text-left w-full md:w-1/2 min-h-[350px] h-full">
           <Shuffle />
         </div>
       </div>

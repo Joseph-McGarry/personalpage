@@ -4,7 +4,7 @@ export default function About() {
   return (
     <div>
       <h1 className='text-2xl pl-4'>ABOUT ME</h1>
-      <p className='pl-4 pt-5 pb-6'>
+      <p className='pl-4 pt-5'>
         Passionate full-stack Software Engineer, fluent in JavaScript, TypeScript and Python. Currently, working
         as an AI Contractor at DataAnnotation, enhancing the way humans interact with Artificial Intelligence. 
         <br></br>
