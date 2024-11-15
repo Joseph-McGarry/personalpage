@@ -1,0 +1,59 @@
+/* toggle.css */
+
+/* Flexbox container for centering */
+.toggle-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Space between toggle buttons */
+    margin-top: 50px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    
+}
+
+.toggle-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Toggle button styles */
+.toggle {
+    background-color: #ed2631;
+    border: 1px solid black;
+    border-radius: 99px;
+    width: 50px;
+    height: 28px;
+    transition: background-color 0.1s ease, border-color 0.2s ease;
+    cursor: pointer;
+    box-shadow: 2px 3px 2px black;
+    position: relative;
+}
+
+.toggle .thumb {
+    height: 20px;
+    width: 20px;
+    background-color: #1d4ba0;
+    border-radius: 99px;
+    transform: translateX(0);
+    transition: left 0.15s ease;
+    position: absolute;
+    left: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.toggle.toggled {
+    background-color: #05b2c6;
+}
+
+.toggle.toggled .thumb {
+    left: calc(50px - 25px);
+}
+
+/* Optional: Style for the text under the toggle buttons */
+.toggle-text {
+    margin-top: 10px;
+    font-size: 16px;
+    color: whitesmoke;
+}

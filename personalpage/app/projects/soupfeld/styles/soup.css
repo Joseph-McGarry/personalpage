@@ -1,0 +1,163 @@
+/* Default Body */
+body {
+    background-color: #1d4ba0; 
+    transition: background-color 0.5s ease; /* Smooth transition for background */
+}
+
+/* Checkered Background in Bizarro Mode */
+body.bizarroMode-checkered {
+    background-color: white;
+    background-image: linear-gradient(45deg, black 25%, transparent 25%), 
+                      linear-gradient(-45deg, black 25%, transparent 25%), 
+                      linear-gradient(45deg, transparent 75%, black 75%), 
+                      linear-gradient(-45deg, transparent 75%, black 75%);
+    background-size: 80px 80px;  /* Increase the size to make checkers larger */
+    background-position: 0px 0px, 0px 40px, 40px -40px, -40px 0px;
+}
+
+/* Main app container handling layout */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    font-family: 'Times New Roman', sans-serif;
+}
+
+
+h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    font-size: 60px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px grey;
+    text-align: center;
+}
+
+img {
+    display: block;
+    margin: 20px auto; /* Centers the image horizontally */
+    width: 35%;
+    min-width: 300px;
+    min-height: 200px;
+    height: auto;
+    padding: 10px;
+}
+
+.seinsoup {
+    display: grid;
+    place-items: center;
+    margin-bottom: 50px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #05b2c6;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 5px 5px 2px black;
+    border-radius: 10px;
+    max-width: 300px;
+    
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    color: #ed2631;
+    font-weight: bold;
+    text-shadow: 1px 1px 10px black;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color:#05b2c6;
+}
+
+input[type="submit"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    background-color: #ed2631;
+    color: #fdd63d;
+    cursor: pointer;
+    box-shadow: 3px 3px 5px black;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
+    font-family: 'Times New Roman', sans-serif;
+    margin: auto;
+}
+
+#soup-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    margin: 10px auto;
+    background-color: #ed2631;
+    color: #fdd63d;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px black;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
+    font-family: 'Times New Roman', sans-serif;
+}
+
+.soup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fdd63d;
+}
+
+.soup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+}
+
+.created {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Recipe container styling */
+.recipe-container {
+    max-width: 80%; /* Adjust to fit your container */
+    padding: 20px;
+    background-color: #05b2c6; /* WAS AQUA*/
+    margin: 20px auto;
+    box-shadow: 5px 5px 2px black;
+    border-radius: 10px;
+    overflow-x: auto; /* Allows horizontal scroll if content is too wide */
+    overflow-y: hidden; /* Prevents vertical scroll if content height exceeds container */
+}
+
+/* Pre tag styling to improve readability */
+pre {
+    white-space: pre-wrap; /* Ensures long lines wrap instead of overflowing */
+    word-wrap: break-word; /* Breaks words that are too long to fit */
+    font-size: 16px; /* Adjust font size as needed */
+    color: black; /* This can be changed if you want a different color */
+    line-height: 1.5; /* Improves readability by increasing line height */
+    margin: 0;
+    padding: 0;
+}
