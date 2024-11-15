@@ -4,16 +4,16 @@ import RandomWalk from './randomwalk';
 import './random.css'; 
 
 const RandomWalkPage: React.FC = () => {
-  const [shape, setShape] = useState<string>('circle'); // Default shape is 'circle'
+  const [shape, setShape] = useState<string>('circle');
   const [lineWidth, setLineWidth] = useState(20);
-  const [shapeSize, setShapeSize] = useState(40); // Default shape size
+  const [shapeSize, setShapeSize] = useState(40); 
   const [distance, setDistance] = useState(30);
   const [angleMode, setAngleMode] = useState('random');
-  const [fullness, setFullness] = useState<string>('filled'); // Default fullness is 'filled'
+  const [fullness, setFullness] = useState<string>('filled'); 
   const [speed, setSpeed] = useState(100);
-  const [bgColor, setBgColor] = useState('#ffffff'); // Background color
-  const [isRunning, setIsRunning] = useState(false); // Controls the random walk
-  const [reset, setReset] = useState(false); // New state to trigger reset
+  const [bgColor, setBgColor] = useState('#ffffff'); 
+  const [isRunning, setIsRunning] = useState(false); 
+  const [reset, setReset] = useState(false); 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   // Medium gray for selected shapes
@@ -25,13 +25,12 @@ const RandomWalkPage: React.FC = () => {
   const handleStart = () => setIsRunning(true);
   const handleStop = () => setIsRunning(false);
 
-  // Update the handleClear function in RandomWalkPage.tsx to remove the background fill when clearing
+  // Update the handleClear function
   const handleClear = () => {
     if (canvasRef.current) {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
     }
@@ -89,10 +88,10 @@ const RandomWalkPage: React.FC = () => {
             angleMode={angleMode}
             speed={speed}
             isRunning={isRunning}
-            canvasRef={canvasRef} // Pass the canvas ref to RandomWalk
-            reset={reset} // Pass the reset prop
-            fullness={fullness} // Pass the fullness prop
-            bgColor={bgColor}   // Pass the bgColor prop
+            canvasRef={canvasRef} 
+            reset={reset} 
+            fullness={fullness}
+            bgColor={bgColor}
           />
         </div>
       </div>

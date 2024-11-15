@@ -2,51 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Define color variables for easy maintenance and readability */
 :root {
-  --foreground-rgb: 255, 255, 255; /* White */
-  --background-rgb: 0, 0, 0; /* Black */
+  --foreground-rgb: 255, 255, 255; 
+  --background-rgb: 0, 0, 0;
 }
 
 body {
-  /* Apply the foreground and background colors using CSS custom properties */
-  color: rgb(var(--foreground-rgb)); /* Text color set to white */
-  background-color: rgb(var(--background-rgb)); /* Background color set to black */
+  color: rgb(var(--foreground-rgb)); 
+  background-color: rgb(var(--background-rgb)); 
 }
 
 a {
-  background-color: transparent; /* Ensure links have transparent background */
+  background-color: transparent;
   color: white;
 }
 
-/* a:hover {
-  color: black; 
-  background-color: transparent; 
-}  */
-
-
 .container {
-  display: flex;               /* Corresponds to items-center */
-  align-items: center;         /* Corresponds to items-center */
-  justify-content: center;     /* Ensure it's centered horizontally */
-  flex-direction: column;      /* Ensures vertical spacing */
-  width: 100%;                 /* Corresponds to w-full */
-  min-width: 16rem;            /* Corresponds to min-w-64 (64 * 0.25rem = 16rem) */
-  background-color: black;   /* Corresponds to bg-green-100 */
-  margin-top: 0;               /* For default, no margin on small screens */
+  display: flex;               
+  align-items: center;         
+  justify-content: center;    
+  flex-direction: column;      
+  width: 100%;                 
+  min-width: 16rem;           
+  background-color: black;  
+  margin-top: 0;               
+  box-shadow: 0 0 10px 3px white;
 }
 
-
-/* If you have utility classes you wish to add, you can do so here */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
 
-/* Corresponds to md:mt-10 (10 * 0.25rem = 2.5rem) */
-/* @media (min-width: 768px) {
-  .container {
-    margin-top: .5rem;        
-  } 
-}  */

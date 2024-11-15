@@ -2,23 +2,21 @@
       appearance: none;
       width: 15px;
       height: 15px;
-      border: 1px solid #555; /* Medium gray border */
-      border-radius: 50%; /* Round shape for radio button */
+      border: 1px solid #555; 
+      border-radius: 50%; 
       background-color: white;
   }
   #random-selector:checked {
-    /* background-color: #007bff;  */
     background-color: #6b7280;
-    border-color: white; /* Blue border when checked */
+    border-color: white; 
   }
 
-  /* Canvas will resize based on available width */
   .canvas-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-grow: 1; /* Allow canvas to grow and take up space */
+    flex-grow: 1;
   }
   
   canvas {
@@ -27,69 +25,69 @@
     border: 1px solid black;
   }
   
-  /* Toolbar styling */
+
   .toolbar {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     padding: 10px;
-    width: 250px; /* Set a default width */
+    width: 250px; 
     border: 2px solid white;
     border-radius: 5px;
     margin: 10px;
   }
-  /* Base styling for all custom sliders */
+
 .custom-slider {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 8px; /* Track height */
-  background-color: #d1d5db; /* Light gray for the track */
-  border-radius: 4px; /* Rounded edges */
+  height: 8px; 
+  background-color: #d1d5db; 
+  border-radius: 4px; 
   cursor: pointer;
   outline: none;
 }
 
-/* Style the thumb (knob) */
+
 .custom-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 15px;
   height: 15px;
-  border-radius: 50%; /* Make it round */
-  background-color: rgb(107, 114, 128); /* Black thumb color */
+  border-radius: 50%; 
+  background-color: rgb(107, 114, 128); 
   cursor: pointer;
-  border: 1px solid #fff; /* White border for contrast */
+  border: 1px solid #fff; 
 }
 
 .custom-slider::-moz-range-thumb {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: rgb(107, 114, 128); /* Black thumb color */
+  background-color: rgb(107, 114, 128); 
   cursor: pointer;
-  border: 1px solid #fff; /* White border for contrast */
+  border: 1px solid #fff; 
 }
 
-/* Focus outline for accessibility */
+
 .custom-slider:focus {
-  box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.5); /* Dark focus outline */
+  box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.5);
 }
 
-  /* Responsive styling for smaller screens */
+
   @media (max-width: 768px) {
     .container {
-      flex-direction: column; /* Stack the canvas and toolbar vertically */
+      flex-direction: column;
     }
   
     .toolbar {
-      width: 100%; /* Take full width on mobile screens */
+      width: 100%; 
       margin-top: 5px;
     }
   
     canvas {
-      max-width: 100%; /* Make sure canvas fits the screen width */
+      max-width: 100%;
       height: auto;
     }
   }

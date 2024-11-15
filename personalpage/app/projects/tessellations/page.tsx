@@ -353,6 +353,7 @@ const Tessellator: React.FC = () => {
           />
         </div>
 
+        {/* Same color selector */}
         <div id="same-color-toggle">
           <label className="flex items-center gap-2 ">
             <input
@@ -366,6 +367,7 @@ const Tessellator: React.FC = () => {
           </label>
         </div>
 
+        {/* Grid size */}
         <div id="grid-selector">
           <label htmlFor="grid-size">Grid Size:</label>
           <input
@@ -379,6 +381,7 @@ const Tessellator: React.FC = () => {
           <span>{gridSize}</span>
         </div>
 
+        {/* Tess grid options */}
         <div id="mode-selector">
             <label>Tessellation Grid:</label>
           <label>
@@ -433,6 +436,7 @@ const Tessellator: React.FC = () => {
           </div>
         </div>
 
+        {/* Tess Table */}
         <div id="tessellation-container">
           <h2 className='text-2xl mb-4'>Tessellation</h2>
           <div
@@ -449,6 +453,7 @@ const Tessellator: React.FC = () => {
         </div>
       </div>
 
+      {/* Buttons */}
       <div className="text-center mt-4">
         <button className="cursor-default rounded"
           id="tess-button"
