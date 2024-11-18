@@ -9,7 +9,7 @@ export default function Projects() {
         <div className="p-2 border-2 border-white rounded w-full max-w-[1600px] mx-auto h-auto">
           <h1 className="text-2xl pt-4">PROJECTS</h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 place-items-center">
-            {/* Project 1 */}
+            {/* Abstractify Project */}
             <div className="m-2">
               <Link href="/projects/randomwalk" passHref>
                 <Image
@@ -24,7 +24,7 @@ export default function Projects() {
               Interactive tool for generating abstract art using the principles of Random Walk mathematics, designed to inspire creativity through computational patterns.
               </p>
             </div>
-            {/* Project 2 */}
+            {/* Soupfeld Project */}
             {/* <div className="m-2">
               <Link href="/projects/soupfeld" passHref>
                 <Image
@@ -39,7 +39,7 @@ export default function Projects() {
                 Seinfeld-themed random soup generator integrating the OpenAI API to produce unique, character-inspired recipes with a touch of humor and creativity.
               </p>
             </div> */}
-            {/* Project 3 */}
+            {/* Tessellator Project*/}
             <div className="m-2">
               <Link href="/projects/tessellations" passHref>
                 <Image
