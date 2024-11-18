@@ -13,7 +13,7 @@ export default function Projects() {
             <div className="m-2">
               <Link href="/projects/randomwalk" passHref>
                 <Image
-                  src="/Abstractify.png"
+                  src="/Abstractify2.png"
                   alt="abstractify preview"
                   width={500}
                   height={300}
