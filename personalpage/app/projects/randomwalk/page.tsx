@@ -76,7 +76,7 @@ const RandomWalkPage: React.FC = () => {
             Abstractify
           </a>
         </h1>
-        <div
+      <div
           className="canvas-container"
           style={{ backgroundColor: bgColor }}
         >
@@ -97,6 +97,7 @@ const RandomWalkPage: React.FC = () => {
       </div>
   
       {/* Toolbar */}
+      
       <div className="p-4 border-2 rounded border-gray-300 flex flex-row flex-wrap justify-center items-start w-full lg:w-80 mt-4 lg:mt-0 lg:ml-4">
         {/* Shape Selector */}
         <div className="flex flex-col items-center mx-2 mb-4">
@@ -146,7 +147,7 @@ const RandomWalkPage: React.FC = () => {
                     : 'none',
               }}
             ></div>
-  
+
             {/* Triangle */}
             <div
               onClick={() => setShape('triangle')}
@@ -154,10 +155,10 @@ const RandomWalkPage: React.FC = () => {
               style={{
                 width: 0,
                 height: 0,
-                borderLeft: '7px solid transparent',
-                borderRight: '7px solid transparent',
+                borderLeft: '12px solid transparent',
+                borderRight: '12px solid transparent',
                 borderBottom:
-                  shape === 'triangle' ? '14px solid #6b7280' : '14px solid white',
+                  shape === 'triangle' ? '24px solid #6b7280' : '24px solid white',
                 filter:
                   shape === 'triangle'
                     ? 'drop-shadow(0 0 4px rgb(255, 255, 255)) drop-shadow(0 0 1px rgb(255, 255, 255))'
@@ -167,6 +168,7 @@ const RandomWalkPage: React.FC = () => {
           </div>
         </div>
   
+        
         {/* Line Width Selector */}
         <div className="flex flex-col items-center mx-2 mb-4">
           <h3 className="text-sm md:text-md lg:text-lg mb-2 text-center">Line Width</h3>
@@ -176,10 +178,10 @@ const RandomWalkPage: React.FC = () => {
             max="150"
             value={lineWidth}
             onChange={(e) => setLineWidth(Number(e.target.value))}
-            className="custom-slider line-width w-24"
+            className="custom-slider line-width"
           />
           <span className="text-center mt-1 text-xs">{lineWidth}px</span>
-        </div>
+        </div> 
   
         {/* Shape Size Selector */}
         <div className="flex flex-col items-center mx-2 mb-4">
@@ -190,7 +192,7 @@ const RandomWalkPage: React.FC = () => {
             max="200"
             value={shapeSize}
             onChange={(e) => setShapeSize(Number(e.target.value))}
-            className="custom-slider shape-size w-24"
+            className="custom-slider shape-size"
           />
           <span className="text-center mt-1 text-xs">{shapeSize}px</span>
         </div>
@@ -204,7 +206,7 @@ const RandomWalkPage: React.FC = () => {
             max="200"
             value={distance}
             onChange={(e) => setDistance(Number(e.target.value))}
-            className="custom-slider movement-distance w-24"
+            className="custom-slider movement-distance"
           />
           <span className="text-center mt-1 text-xs">{distance}px</span>
         </div>
@@ -220,17 +222,28 @@ const RandomWalkPage: React.FC = () => {
             onChange={(e) =>
               setSpeed(500 - (Number(e.target.value) / 100) * (500 - 10))
             }
-            className="custom-slider speed w-24"
+            className="custom-slider speed"
           />
           <span className="text-center mt-1 text-xs">{speed.toFixed(0)}ms</span>
         </div>
-  
+        {/* Background Color Selector */}
+        <div className="flex flex-col items-center mx-2 mb-4">
+          <h3 className="text-sm md:text-md lg:text-lg mb-2 text-center">Background Color</h3>
+            <input
+              type="color"
+              value={bgColor}
+              onChange={(e) => setBgColor(e.target.value)}
+              className="w-10 h-10"
+          />
+        </div>
+
         {/* Fullness Selector */}
         <div className="flex flex-col items-center mx-2 mb-4">
           <h3 className="text-sm md:text-md lg:text-lg mb-2 text-center">Fullness</h3>
           <div className="flex flex-row items-center space-x-2">
             <label className="flex items-center text-xs">
               <input
+                id="random-selector"
                 type="radio"
                 value="filled"
                 checked={fullness === 'filled'}
@@ -241,6 +254,7 @@ const RandomWalkPage: React.FC = () => {
             </label>
             <label className="flex items-center text-xs">
               <input
+                id="random-selector"
                 type="radio"
                 value="outlined"
                 checked={fullness === 'outlined'}
@@ -258,6 +272,7 @@ const RandomWalkPage: React.FC = () => {
           <div className="flex flex-row items-center space-x-2">
             <label className="flex items-center text-xs">
               <input
+                id="random-selector"
                 type="radio"
                 value="right-angles"
                 checked={angleMode === 'right-angles'}
@@ -268,6 +283,7 @@ const RandomWalkPage: React.FC = () => {
             </label>
             <label className="flex items-center text-xs">
               <input
+                id="random-selector"
                 type="radio"
                 value="random"
                 checked={angleMode === 'random'}
@@ -279,41 +295,40 @@ const RandomWalkPage: React.FC = () => {
           </div>
         </div>
   
-        {/* Background Color Selector */}
-        <div className="flex flex-col items-center mx-2 mb-4">
-          <h3 className="text-sm md:text-md lg:text-lg mb-2 text-center">Background Color</h3>
-          <input
-            type="color"
-            value={bgColor}
-            onChange={(e) => setBgColor(e.target.value)}
-            className="w-10 h-10"
-          />
-        </div>
+        
   
         {/* Control Buttons */}
-        <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 place-items-center gap-4">
+        <div className="grid grid-cols-2 md:grid-row-1 lg:grid-cols-2 place-items-center gap-4">
         {/* <div className="flex flex-row space-x-2 mx-2 mt-2"> */}
           <button
             onClick={handleStart}
-            className="px-2 py-1 bg-green-200 text-black rounded hover:bg-green-300 text-xs"
+            // className="px-2 py-1 bg-green-200 text-black rounded hover:bg-green-300 text-xs"
+            className="w-full md:flex-1 px-4 py-2 bg-green-200 text-black rounded hover:bg-green-300"
+            style={{ minWidth: '45%' }}
           >
             Start
           </button>
           <button
             onClick={handleStop}
-            className="px-2 py-1 bg-red-200 text-black rounded hover:bg-red-300 text-xs"
+            // className="px-2 py-1 bg-red-200 text-black rounded hover:bg-red-300 text-xs"
+            className="w-full md:flex-1 px-4 py-2 bg-red-200 text-black rounded hover:bg-red-300"
+            style={{ minWidth: '45%' }}
           >
             Stop
           </button>
           <button
             onClick={handleClear}
-            className="px-2 py-1 bg-white text-black rounded hover:bg-gray-200 text-xs"
+            // className="px-2 py-1 bg-white text-black rounded hover:bg-gray-200 text-xs"
+            className="w-full md:flex-1 px-4 py-2 bg-white text-black rounded hover:bg-gray-200"
+            style={{ minWidth: '45%' }}
           >
             Clear
           </button>
           <button
             onClick={handleDownload}
-            className="px-2 py-1 bg-blue-200 text-black rounded hover:bg-blue-300 text-xs"
+            // className="px-2 py-1 bg-blue-200 text-black rounded hover:bg-blue-300 text-xs"
+            className="w-full md:flex-1 px-4 py-2 bg-blue-200 text-black rounded hover:bg-blue-300"
+            style={{ minWidth: '45%' }}
           >
             Download
           </button>
