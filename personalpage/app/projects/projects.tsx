@@ -24,6 +24,7 @@ export default function Projects() {
               Interactive tool for generating abstract art using the principles of Random Walk mathematics, designed to inspire creativity through computational patterns.
               </p>
             </div>
+
             {/* Soupfeld Project */}
             {/* <div className="m-2">
               <Link href="/projects/soupfeld" passHref>
@@ -39,6 +40,7 @@ export default function Projects() {
                 Seinfeld-themed random soup generator integrating the OpenAI API to produce unique, character-inspired recipes with a touch of humor and creativity.
               </p>
             </div> */}
+
             {/* Tessellator Project*/}
             <div className="m-2">
               <Link href="/projects/tessellations" passHref>
@@ -54,6 +56,23 @@ export default function Projects() {
                 An interactive tessellation design tool that enables users to explore and create intricate, visually captivating geometric patterns.
               </p>
             </div>
+
+            {/* Center Project*/}
+            {/* <div className="m-2">
+              <Link href="/projects/centered" passHref>
+                <Image
+                  src="/tessellationScreenshot.png"
+                  alt="centered preview"
+                  width={500}
+                  height={300}
+                  className="mt-4 w-full h-auto object-cover"
+                />
+              </Link>
+              <p className="mt-4 text-center">
+                Centered Game Test.
+              </p>
+            </div> */}
+
           </div>
         </div>
       ); 

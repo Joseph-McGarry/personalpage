@@ -1,4 +1,5 @@
 'use client';
+
 import { useState, useRef } from 'react';
 import RandomWalk from './randomwalk';
 import './random.css'; 
@@ -36,7 +37,6 @@ const RandomWalkPage: React.FC = () => {
     }
     // Trigger reset
     setReset(true);
-    // Reset 'reset' state back to false after a short delay
     setTimeout(() => setReset(false), 0);
   };
 
