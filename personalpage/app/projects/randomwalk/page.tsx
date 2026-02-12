@@ -3,6 +3,8 @@
 import { useState, useRef } from 'react';
 import RandomWalk from './randomwalk';
 import './random.css'; 
+import Link from "next/link";
+
 
 const RandomWalkPage: React.FC = () => {
   const [shape, setShape] = useState<string>('circle');
@@ -72,9 +74,9 @@ const RandomWalkPage: React.FC = () => {
       {/* Canvas */}
       <div className="flex flex-col items-center w-full lg:w-auto">
         <h1 className="text-3xl sm:text-5xl mb-4 text-center">
-          <a href="/" className="hover:underline">
+          <Link href="/" className="hover:underline">
             Abstractify
-          </a>
+          </Link>
         </h1>
       <div
           className="canvas-container"

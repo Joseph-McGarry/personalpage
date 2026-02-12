@@ -515,6 +515,8 @@
 import './tessellator.css';
 import React, { useState, useEffect, useRef } from 'react';
 import html2canvas from 'html2canvas';
+import Link from "next/link";
+
 
 const MAX_GRID_SIZE = 20;
 
@@ -934,7 +936,9 @@ const Tessellator: React.FC = () => {
   return (
     <div>
       <header id="tessheader">
-        <a href="/">Tessellator</a>
+        <Link href="/" className="hover:underline">
+          Tessellator
+        </Link>
       </header>
       <div className="tessellator-container">
         <div id="controls">
