@@ -46,7 +46,6 @@ import { useState } from "react";
 
 export default function About() {
   const [showWoofie, setShowWoofie] = useState(false);
-  console.log("showWoofie:", showWoofie);
 
   return (
     <div>
@@ -72,6 +71,7 @@ export default function About() {
           className="relative inline-block cursor-pointer text-pink-500 font-medium"
           onMouseEnter={() => setShowWoofie(true)}
           onMouseLeave={() => setShowWoofie(false)}
+          onClick={() => setShowWoofie((v) => !v)}
         >
           Woofie
           {showWoofie && (
