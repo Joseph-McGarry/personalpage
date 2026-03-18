@@ -69,9 +69,9 @@ export default function About() {
         Ask me about my cat{" "}
         <span
           className="relative inline-block cursor-pointer text-pink-500 font-medium"
-          onMouseEnter={() => setShowWoofie(true)}
-          onMouseLeave={() => setShowWoofie(false)}
-          onClick={() => setShowWoofie((v) => !v)}
+          onPointerEnter={(e) => { if (e.pointerType === 'mouse') setShowWoofie(true); }}
+          onPointerLeave={(e) => { if (e.pointerType === 'mouse') setShowWoofie(false); }}
+          onPointerUp={(e) => { if (e.pointerType === 'touch') setShowWoofie((v) => !v); }}
         >
           Woofie
           {showWoofie && (
