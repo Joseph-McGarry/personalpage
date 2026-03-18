@@ -36,7 +36,8 @@
     "components/**/*.tsx",
     ".next/types/**/*.ts",
     "pages/book.tsx",
-    "app/projects/randomwalk/randomwalk.tsx"
+    "app/projects/randomwalk/randomwalk.tsx",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

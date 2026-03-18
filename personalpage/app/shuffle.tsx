@@ -38,7 +38,7 @@ export default function Shuffle() {
     intervalRef.current = setInterval(() => {
       setSkills(shuffleSkills([...skills]));
       // const randomDuration = Math.random() * (5 - 1) + 1;
-      const duration = 7;
+      const duration = 5;
       setTransitionDuration(duration);
     }, 7000); // Shuffle every second
   };
@@ -58,14 +58,15 @@ export default function Shuffle() {
 
   return (
     <div
-      className='container flex justify-center items-center p-2 rounded border-2 w-80 lg:w-96'
+      className='container flex justify-center items-center rounded-lg border-2 w-80 lg:w-96'
       onMouseEnter={stopShuffling}   // Stop shuffling on hover
       onMouseLeave={startShuffling}  // Resume shuffling when mouse leaves
     >
-      <div className="pt-5 pl-1 pb-5 text-md md:text-md bg-black rounded-lg px-0 py-2 grid grid-cols-3 gap-1.5">
+      <div className="pt-5 pl-1 pb-5 text-md md:text-md bg-white round px-0 py-2 grid grid-cols-3 gap-1.5">
         <AnimatePresence>
           {skills.map((skill) => (
             <motion.div
+              className="text-black font-bold"   //
               key={skill.id} // Use the unique id for key
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
