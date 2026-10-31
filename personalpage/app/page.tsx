@@ -12,11 +12,18 @@ import RibbonWander from "./components/RibbonWander";
 
 
 export const metadata = {
-  title: "Joseph McGarry - Software Engineer",
+  title: "Joseph McGarry - GraphQL API Engineer",
   description:
-    "Portfolio of Joseph McGarry, a passionate full-stack software engineer specializing in React, Node.js, and modern web technologies.",
+    "Portfolio of Joseph McGarry, a GraphQL API engineer building typed APIs with TypeScript, Node.js, AWS Lambda, and Terraform, with full-stack roots in React and Next.js.",
   keywords: [
     "Joseph McGarry",
+    "GraphQL API Engineer",
+    "GraphQL",
+    "GraphQL Mesh",
+    "GraphQL Hive",
+    "TypeScript",
+    "AWS Lambda",
+    "Terraform",
     "Software Engineer",
     "React",
     "Node.js",
@@ -27,9 +34,9 @@ export const metadata = {
   authors: [{ name: "Joseph McGarry" }],
   alternates: { canonical: "https://josephmcgarry.dev/" },
   openGraph: {
-    title: "Joseph McGarry - Software Engineer",
+    title: "Joseph McGarry - GraphQL API Engineer",
     description:
-      "Explore Joseph McGarry's portfolio, showcasing skills, projects, and expertise in modern web development.",
+      "Explore Joseph McGarry's portfolio: GraphQL APIs, serverless infrastructure, and full-stack projects.",
     url: "https://josephmcgarry.dev/",
     images: [{ url: "/joe.jpeg" }],
   },
@@ -41,7 +48,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Joseph McGarry",
-    jobTitle: "Software Engineer",
+    jobTitle: "GraphQL API Engineer",
     url: "https://josephmcgarry.dev/",
     sameAs: [
       "https://www.linkedin.com/in/joseph-mcgarry",
@@ -49,7 +56,7 @@ export default function Home() {
     ],
     image: "/joe.jpeg",
     description:
-      "Full-stack software engineer specializing in React, Node.js, and building innovative projects.",
+      "GraphQL API engineer working in TypeScript, Node.js, AWS Lambda, Terraform, GraphQL Mesh, and Hive, with a full-stack background in React and Next.js.",
   };
 
   return (
@@ -70,22 +77,36 @@ export default function Home() {
               {/* Left: copy */}
               <div className="text-left">
                 <h1 className="text-4xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
-                  Full-Stack Engineer{" "}
+                  GraphQL API Engineer{" "}
                   <span className="relative inline-block">
-                    <span className="text-3xl text-accent">Clean code. Bold results.</span>
+                    <span className="text-3xl text-accent">APIs that scale with you.</span>
                     <span className="absolute -bottom-1 left-0 h-[2px] w-full bg-accent blur-[1px]" />
                     <span className="absolute -bottom-1 left-0 h-[2px] w-full bg-accent/60 blur-[4px]" />
                   </span>
                 </h1>
 
+                <p className="mt-3 text-sm md:text-base text-foreground/80">
+                  Full-stack roots: React · Next.js · React Native
+                </p>
+
                 <p className="mt-4 text-sm md:text-base text-muted-foreground max-w-prose">
-                I ship web and mobile apps with strong fundamentals: clean UI, fast APIs, and maintainable systems.
+                I build typed GraphQL APIs in TypeScript and Node, run them serverless on AWS Lambda, and
+                define the infrastructure in Terraform. I&apos;ve shipped web and mobile apps too, so I design
+                APIs with the client in mind.
                 </p>
 
                 <ul className="mt-6 space-y-3 text-sm md:text-base text-muted-foreground">
                   <li className="flex gap-3">
                     <span className="mt-2 h-2 w-2 rounded-full bg-accent shadow-neon" />
-                    <span> React · Next.js · React Native: web to mobile</span>
+                    <span>GraphQL APIs in TypeScript and Node on AWS Lambda</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="mt-2 h-2 w-2 rounded-full bg-accent shadow-neon" />
+                    <span>One graph across many sources with GraphQL Mesh, schema checks in Hive</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="mt-2 h-2 w-2 rounded-full bg-accent shadow-neon" />
+                    <span>Infrastructure as code with Terraform</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="mt-2 h-2 w-2 rounded-full bg-accent shadow-neon" />

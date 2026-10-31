@@ -59,7 +59,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: "Joseph McGarry" as string,
-  description: "Software Engineer" as string,
+  description: "GraphQL API Engineer" as string,
 };
 
 export default function RootLayout({
