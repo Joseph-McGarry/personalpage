@@ -1,12 +1,14 @@
 'use client';
 
 const skillGroups = [
-  { label: "Languages", skills: ["JavaScript", "TypeScript", "Python"] },
+  { label: "Languages", skills: ["TypeScript", "JavaScript", "Python"] },
+  { label: "APIs & GraphQL", skills: ["GraphQL", "GraphQL Mesh", "GraphQL Hive", "REST API"] },
+  { label: "Backend", skills: ["Node.js", "Express.js", "Bun"] },
+  { label: "Cloud & Infrastructure", skills: ["AWS", "AWS Lambda", "Serverless", "Terraform"] },
   { label: "Frontend", skills: ["React", "Next.js", "React Native", "Expo", "Redux", "Redux Toolkit", "Tailwind CSS", "AJAX", "HTML", "CSS", "SCSS"] },
-  { label: "Backend", skills: ["Node.js", "Express.js", "GraphQL", "Bun", "REST API"] },
   { label: "Databases", skills: ["MongoDB", "Mongoose", "PostgreSQL", "SQL", "SQLite", "Redis"] },
-  { label: "AI & ML", skills: ["LangChain", "RAG", "OpenAI API", "OpenAI Embeddings", "FAISS", "Prompt Engineering", "LLMs"] },
-  { label: "DevOps & Tooling", skills: ["Git", "GitHub Actions", "Docker", "AWS", "CI/CD", "Vercel", "Webpack", "Vite"] },
+  { label: "AI & ML", skills: ["LangChain", "RAG", "OpenAI API", "OpenAI Embeddings", "FAISS", "Prompt Engineering", "LLMs", "Claude Code"] },
+  { label: "DevOps & Tooling", skills: ["Git", "GitHub Actions", "Docker", "CI/CD", "Vercel", "Webpack", "Vite"] },
   { label: "Testing", skills: ["Jest", "Supertest", "React Testing Library"] },
 ]
 

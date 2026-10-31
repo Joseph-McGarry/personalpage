@@ -54,12 +54,19 @@ export default function About() {
   return (
     <div>
       <p className='pl-4 pt-5'>
-        I work mainly in React/TypeScript and Node, with a focus on
-        building software that feels simple to use and stays solid under the hood. I care about performance, maintainability,
-        and shipping features that hold up in production.
+        I&apos;m a GraphQL API engineer. Day to day I build APIs in TypeScript and Node, deploy them
+        as AWS Lambda functions, and manage the infrastructure as code with Terraform. I use GraphQL Mesh
+        to bring multiple data sources together into a single graph, and Hive to track the schema and
+        catch breaking changes before they reach clients.
         <br />
         <br />
-        Recently, I&apos;ve worked on AI quality and reliability at DataAnnotation,
+        I focus on building software that feels simple to use and stays solid under the hood. I care about
+        performance, maintainability, and shipping features that hold up in production. My background is
+        full-stack, with React, Next.js, and React Native on the front end, so I design APIs with the
+        people consuming them in mind.
+        <br />
+        <br />
+        Previously, I worked on AI quality and reliability at DataAnnotation,
         improving model outputs through structured evaluation, debugging,
         and safety/truthfulness checks. I&apos;ve also built an open-source developer tool at OS Labs, BuQL,
         a Redis-backed GraphQL caching layer that improved p95 performance
