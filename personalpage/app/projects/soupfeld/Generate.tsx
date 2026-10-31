@@ -31,7 +31,8 @@ const Generate: React.FC<GenerateProps> = ({ modes, onSoupGenerated }) => {
   // Play the audio when `isLoading` becomes true
   useEffect(() => {
     if (isLoading && loadingAudio.current) {
-      loadingAudio.current.play();
+      // play() rejects when the browser blocks autoplay; the recipe still loads
+      loadingAudio.current.play().catch(() => {});
     } else if (loadingAudio.current) {
       loadingAudio.current.pause();
       loadingAudio.current.currentTime = 0; // Reset the audio to the beginning
@@ -53,6 +54,7 @@ const Generate: React.FC<GenerateProps> = ({ modes, onSoupGenerated }) => {
         alert('Please generate a soup first!');
         return;
       }
+      if (isLoading) return;
       setIsLoading(true);
       try {
         const generatedRecipe: string = await getRecipeFromOpenAI(generatedSoup);
@@ -73,6 +75,7 @@ const Generate: React.FC<GenerateProps> = ({ modes, onSoupGenerated }) => {
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
+    URL.revokeObjectURL(element.href);
   };
 
   return (
@@ -83,7 +86,7 @@ const Generate: React.FC<GenerateProps> = ({ modes, onSoupGenerated }) => {
 
       {generatedSoup && (
         <div>
-          <Soup generatedSoup={generatedSoup} onGenerateRecipe={handleGenerateRecipe} />
+          <Soup generatedSoup={generatedSoup} onGenerateRecipe={handleGenerateRecipe} isLoading={isLoading} />
         </div>
       )}
 

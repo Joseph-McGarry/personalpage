@@ -1,12 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
-import { Inter } from "next/font/google";
-// import { metadata } from '../app/layout.tsx';
 import "../app/globals.css";
-import { title } from 'process';
-
-
-const inter = Inter({ subsets: ["latin"] });
 
 type Entry = {
   name: string;
@@ -29,12 +23,12 @@ export default function Book() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setPending(true);
 
     if (!nameRef.current) {
       console.error('nameRef.current is null');
-      return; // Optionally handle this case, e.g., by logging an error or setting an error state
+      return;
     }
+    setPending(true);
     // Extract the message and name directly from state and ref
     const name = nameRef.current.value;
     
@@ -73,7 +67,7 @@ export default function Book() {
           type="text"
           maxLength={30}
           required
-          className=" pl-2 pr-32 py-2 mb-2 hover:shadow-white block w-full border-neutral-300 rounded-md bg-black transition-shadow duration-500 ease-in-out'"
+          className=" pl-2 pr-32 py-2 mb-2 hover:shadow-white block w-full border-neutral-300 rounded-md bg-black transition-shadow duration-500 ease-in-out"
         />
         <textarea
           ref={messageRef}
@@ -85,7 +79,7 @@ export default function Book() {
           required
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="resize-none pl-2 pr-32 py-2 mt-3 hover:shadow-white block w-full border-neutral-300 rounded-md bg-black transition-shadow duration-500 ease-in-out'"
+          className="resize-none pl-2 pr-32 py-2 mt-3 hover:shadow-white block w-full border-neutral-300 rounded-md bg-black transition-shadow duration-500 ease-in-out"
         />
         <button
           className='mt-2 block text-sm w-20 p-2 rounded text-start hover:shadow-white hover:bg-black transition-shadow duration-500 ease-in-out'

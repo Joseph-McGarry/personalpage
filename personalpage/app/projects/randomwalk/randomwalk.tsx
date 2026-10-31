@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import { nextPosition, randomAngle } from './walk';
 
 interface RandomWalkProps {
   shape: string;
@@ -54,6 +55,14 @@ const RandomWalk: React.FC<RandomWalkProps> = ({
     positionRef.current = { x: canvas.width / 2, y: canvas.height / 2 };
   }, [canvasRef]);
 
+  // Clear sends a reset pulse: start the next walk from the center again
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (reset && canvas) {
+      positionRef.current = { x: canvas.width / 2, y: canvas.height / 2 };
+    }
+  }, [reset, canvasRef]);
+
   // Random walk animation
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -79,15 +88,14 @@ const RandomWalk: React.FC<RandomWalkProps> = ({
     const randomWalk = () => {
       if (!positionRef.current) return;
 
-      // Compute new position
-      const angle =
-        angleMode === 'random'
-          ? Math.random() * 2 * Math.PI
-          : (Math.floor(Math.random() * 4) * Math.PI) / 2;
-      const x = positionRef.current.x + Math.cos(angle) * distance;
-      const y = positionRef.current.y + Math.sin(angle) * distance;
-
-      // Update position
+      // Compute and store the new position
+      const { x, y } = nextPosition(
+        positionRef.current,
+        randomAngle(angleMode),
+        distance,
+        canvas.width,
+        canvas.height
+      );
       positionRef.current = { x, y };
 
       // Draw the shape at the new position

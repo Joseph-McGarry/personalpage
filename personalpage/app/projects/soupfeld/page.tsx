@@ -1,9 +1,7 @@
 'use client';
-import { useState, useRef, useEffect } from 'react';
-import Soup from './soupGen';
-import './styles/soup.css'; 
+import { useState, useEffect } from 'react';
+import './styles/soup.css';
 import Generate from './Generate';
-import soupImage from '../../assets/soup2.png';
 import ToggleButtons from './ToggleButtons';
 import Image from 'next/image';
 
@@ -32,6 +30,8 @@ const App: React.FC = () => {
     } else {
       document.body.classList.remove('bizarroMode-checkered');
     }
+    // Don't leak the checkered background onto other pages after navigating away
+    return () => document.body.classList.remove('bizarroMode-checkered');
   }, [modes.bizarroMode]); // Runs whenever bizarroMode is toggled
 
   return (
