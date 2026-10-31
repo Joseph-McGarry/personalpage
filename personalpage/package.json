@@ -11,7 +11,7 @@
   "dependencies": {
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
-    "axios": "^1.13.5",
+    "axios": "^1.21.0",
     "framer-motion": "^11.0.24",
     "html2canvas": "^1.4.1",
     "react": "^19.2.4",
@@ -23,13 +23,28 @@
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
-    "eslint-config-next": "^15.5.12",
-    "next": "^15.3.0",
-    "postcss": "^8",
+    "eslint-config-next": "^15.5.28",
+    "next": "^15.5.28",
+    "postcss": "^8.5.32",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   },
   "overrides": {
-    "glob": "10.5.0"
+    "glob": "14.0.3",
+    "minimatch@9": "11.0.3",
+    "minimatch@10": "11.0.3",
+    "brace-expansion@1": "1.1.21",
+    "next": {
+      "postcss": "$postcss"
+    }
+  },
+  "pnpm": {
+    "overrides": {
+      "glob": "14.0.3",
+      "minimatch@9": "11.0.3",
+      "minimatch@10": "11.0.3",
+      "brace-expansion@1": "1.1.21",
+      "next>postcss": "^8.5.32"
+    }
   }
 }
