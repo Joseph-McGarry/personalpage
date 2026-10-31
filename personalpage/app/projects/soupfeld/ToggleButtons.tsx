@@ -62,7 +62,7 @@ const ToggleButtons: React.FC<ToggleButtonsProps> = ({ setModes }) => {
         <div onClick={toggleBizarroMode} className={`toggle ${bizarroMode ? 'toggled' : ''}`}>
           <div className="thumb"></div>
         </div>
-        <span className="toggle-text">Bizzaro Mode</span>
+        <span className="toggle-text">Bizarro Mode</span>
         <span className="toggle-text">{bizarroMode ? 'ON' : 'OFF'}</span>
       </div>
     </div>

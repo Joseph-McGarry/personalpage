@@ -4,6 +4,7 @@ import './tessellator.css';
 import React, { useState, useEffect, useRef } from 'react';
 import html2canvas from 'html2canvas';
 import Link from "next/link";
+import { createInitialGridState, cellFromDataset } from './grid';
 
 
 const MAX_GRID_SIZE = 20;
@@ -32,23 +33,6 @@ const Tessellator: React.FC = () => {
   const [tessellationRotationState, setTessellationRotationState] = useState<number[][]>(() =>
     createInitialGridState<number>(MAX_GRID_SIZE, 0)
   );
-
-  // Utility: create initial grid (returns T[][])
-  function createInitialGridState<T>(size: number, initialValue: T): T[][] {
-    const grid: T[][] = [];
-    for (let row = 0; row < size; row++) {
-      grid[row] = [];
-      for (let col = 0; col < size; col++) {
-        if (Array.isArray(initialValue)) {
-          // TypeScript now knows initialValue is T extends array
-          grid[row][col] = (initialValue as any).slice();
-        } else {
-          grid[row][col] = initialValue;
-        }
-      }
-    }
-    return grid;
-  }
 
   // Handlers
   const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -228,12 +212,10 @@ const Tessellator: React.FC = () => {
       e.preventDefault();
       isDraggingRef.current = true;
       const touch = e.touches[0];
-      const element = document.elementFromPoint(touch.clientX, touch.clientY) as HTMLElement;
-      if (element && element.dataset.row && element.dataset.col && element.dataset.tri) {
-        const r = parseInt(element.dataset.row);
-        const c = parseInt(element.dataset.col);
-        const t = parseInt(element.dataset.tri) as 0 | 1;
-        paintTriangle(r, c, t);
+      const element = document.elementFromPoint(touch.clientX, touch.clientY) as HTMLElement | null;
+      const cell = element ? cellFromDataset(element.dataset) : null;
+      if (cell) {
+        paintTriangle(cell.row, cell.col, cell.tri);
       }
     }
   };
@@ -537,6 +519,8 @@ const Tessellator: React.FC = () => {
                 display: 'grid',
                 gridTemplateColumns: `repeat(${gridCols}, 50px)`,
                 gridTemplateRows: `repeat(${gridRows}, 50px)`,
+                // React's touch listeners are passive, so preventDefault can't stop scrolling while painting
+                touchAction: 'none',
               }}
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseUp}
