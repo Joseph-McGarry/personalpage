@@ -4,7 +4,14 @@ import './tessellator.css';
 import React, { useState, useEffect, useRef } from 'react';
 import html2canvas from 'html2canvas';
 import Link from "next/link";
-import { createInitialGridState, cellFromDataset } from './grid';
+import {
+  createInitialGridState,
+  cellFromDataset,
+  triangleAt,
+  triangleClipPaths,
+  triangleVertices,
+  type Diagonal,
+} from './grid';
 
 
 const MAX_GRID_SIZE = 20;
@@ -20,11 +27,13 @@ const Tessellator: React.FC = () => {
   const [mode, setMode] = useState<string>('rotateBox');
   const [sameColor, setSameColor] = useState<boolean>(false);
   const [triangleMode, setTriangleMode] = useState<boolean>(false);
+  const [selectedDiagonal, setSelectedDiagonal] = useState<Diagonal>('/');
 
   // Mouse state refs
   const isMouseDownRef = useRef<boolean>(false);
   const isDraggingRef = useRef<boolean>(false);
   const clickTimeoutRef = useRef<number | null>(null);
+  const lastTargetRef = useRef<string | null>(null);
 
   // Initialize grid states: each cell holds two triangle colors [tri0, tri1]
   const [mainGridState, setMainGridState] = useState<string[][][]>(() =>
@@ -32,6 +41,10 @@ const Tessellator: React.FC = () => {
   );
   const [tessellationRotationState, setTessellationRotationState] = useState<number[][]>(() =>
     createInitialGridState<number>(MAX_GRID_SIZE, 0)
+  );
+  // Each cell remembers which way it's split in triangle mode
+  const [diagonalState, setDiagonalState] = useState<Diagonal[][]>(() =>
+    createInitialGridState<Diagonal>(MAX_GRID_SIZE, '/')
   );
 
   // Handlers
@@ -56,6 +69,7 @@ const Tessellator: React.FC = () => {
   const handleClear = () => {
     setMainGridState(createInitialGridState<string[]>(MAX_GRID_SIZE, ['white', 'white']));
     setTessellationRotationState(createInitialGridState<number>(MAX_GRID_SIZE, 0));
+    setDiagonalState(createInitialGridState<Diagonal>(MAX_GRID_SIZE, '/'));
   };
   const handleResetRotations = () => {
     setTessellationRotationState(prev =>
@@ -84,9 +98,22 @@ const Tessellator: React.FC = () => {
       }
       return copy;
     });
+    if (triangleMode) {
+      setDiagonalState(prev => {
+        if (prev[row][col] === selectedDiagonal) return prev;
+        const copy = prev.map(r => r.slice());
+        copy[row][col] = selectedDiagonal;
+        return copy;
+      });
+    }
   };
   const toggleTriangle = (row: number, col: number, triIndex: 0 | 1) => {
     if (row >= gridRows || col >= gridCols) return;
+    // Clicking a cell that's split the other way re-splits and paints it instead of erasing
+    if (triangleMode && diagonalState[row][col] !== selectedDiagonal) {
+      paintTriangle(row, col, triIndex);
+      return;
+    }
     setMainGridState(prev => {
       const copy = prev.map(r => r.map(c => (c.slice() as [string, string])));
       const current = prev[row][col][triIndex];
@@ -148,76 +175,73 @@ const Tessellator: React.FC = () => {
   };
 
   // Mouse/touch handlers
-  const handleTriangleMouseDown = (
-    e: React.MouseEvent<HTMLDivElement>,
-    row: number,
-    col: number,
-    triIndex: 0 | 1
-  ) => {
-    e.preventDefault();
+  // Resolves the cell and triangle under a screen point. In triangle mode the selected
+  // diagonal decides which half was hit, since that's the shape that will be painted.
+  const targetFromPoint = (clientX: number, clientY: number) => {
+    const element = document.elementFromPoint(clientX, clientY);
+    const cellElement = element?.closest<HTMLElement>('[data-row][data-col]');
+    const cell = cellElement ? cellFromDataset(cellElement.dataset) : null;
+    if (!cellElement || !cell) return null;
+    if (!triangleMode) return { ...cell, tri: 0 as const };
+    const rect = cellElement.getBoundingClientRect();
+    const tri = triangleAt(
+      clientX - rect.left,
+      clientY - rect.top,
+      rect.width,
+      rect.height,
+      selectedDiagonal
+    );
+    return { ...cell, tri };
+  };
+  const handlePress = (clientX: number, clientY: number) => {
+    const target = targetFromPoint(clientX, clientY);
+    if (!target) return;
+    const { row, col, tri } = target;
     isMouseDownRef.current = true;
     isDraggingRef.current = false;
-    const currentColor = mainGridState[row][col][triIndex];
+    lastTargetRef.current = `${row}-${col}-${tri}`;
     if (sameColor) {
-      changeSameColorTriangles(currentColor, selectedColor);
+      changeSameColorTriangles(mainGridState[row][col][tri], selectedColor);
     } else {
       if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current);
       clickTimeoutRef.current = window.setTimeout(() => {
         if (isMouseDownRef.current && !isDraggingRef.current) {
-          toggleTriangle(row, col, triIndex);
+          toggleTriangle(row, col, tri);
         }
       }, 0);
     }
   };
-  const handleTriangleMouseEnter = (
-    e: React.MouseEvent<HTMLDivElement>,
-    row: number,
-    col: number,
-    triIndex: 0 | 1
-  ) => {
-    if (isMouseDownRef.current && !sameColor) {
-      e.preventDefault();
-      isDraggingRef.current = true;
-      paintTriangle(row, col, triIndex);
-    }
+  const handleDrag = (clientX: number, clientY: number) => {
+    if (!isMouseDownRef.current || sameColor) return;
+    const target = targetFromPoint(clientX, clientY);
+    if (!target) return;
+    // Only paint when the pointer reaches a new triangle, not on every pixel of movement
+    const key = `${target.row}-${target.col}-${target.tri}`;
+    if (key === lastTargetRef.current) return;
+    lastTargetRef.current = key;
+    isDraggingRef.current = true;
+    paintTriangle(target.row, target.col, target.tri);
+  };
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    handlePress(e.clientX, e.clientY);
+  };
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    handleDrag(e.clientX, e.clientY);
+  };
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    const touch = e.touches[0];
+    handlePress(touch.clientX, touch.clientY);
+  };
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    const touch = e.touches[0];
+    handleDrag(touch.clientX, touch.clientY);
   };
   const handleMouseUp = () => {
     isMouseDownRef.current = false;
     isDraggingRef.current = false;
+    lastTargetRef.current = null;
     if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current);
-  };
-  const handleTriangleTouchStart = (
-    e: React.TouchEvent<HTMLDivElement>,
-    row: number,
-    col: number,
-    triIndex: 0 | 1
-  ) => {
-    e.preventDefault();
-    isMouseDownRef.current = true;
-    isDraggingRef.current = false;
-    const currentColor = mainGridState[row][col][triIndex];
-    if (sameColor) {
-      changeSameColorTriangles(currentColor, selectedColor);
-    } else {
-      if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current);
-      clickTimeoutRef.current = window.setTimeout(() => {
-        if (isMouseDownRef.current && !isDraggingRef.current) {
-          toggleTriangle(row, col, triIndex);
-        }
-      }, 0);
-    }
-  };
-  const handleTriangleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (isMouseDownRef.current && !sameColor) {
-      e.preventDefault();
-      isDraggingRef.current = true;
-      const touch = e.touches[0];
-      const element = document.elementFromPoint(touch.clientX, touch.clientY) as HTMLElement | null;
-      const cell = element ? cellFromDataset(element.dataset) : null;
-      if (cell) {
-        paintTriangle(cell.row, cell.col, cell.tri);
-      }
-    }
   };
 
   // Render main grid: preserve border in both modes
@@ -241,58 +265,39 @@ const Tessellator: React.FC = () => {
               }}
               data-row={row}
               data-col={col}
-              onMouseDown={(e) => handleTriangleMouseDown(e, row, col, 0)}
-              onMouseEnter={(e) => handleTriangleMouseEnter(e, row, col, 0)}
-              onTouchStart={(e) => handleTriangleTouchStart(e, row, col, 0)}
-              onTouchMove={handleTriangleTouchMove}
             />
           );
         } else {
-          // Two triangles inside a bordered container
+          // Two triangles inside a bordered container, split along this cell's diagonal.
+          // The triangles ignore the pointer; hits are resolved from the container's geometry.
+          const [clip0, clip1] = triangleClipPaths(diagonalState[row][col]);
+          const triangleStyle = {
+            position: 'absolute' as const,
+            inset: 0,
+            pointerEvents: 'none' as const,
+          };
           boxes.push(
             <div
               key={`cell-${row}-${col}`}
+              data-row={row}
+              data-col={col}
+              data-diagonal={diagonalState[row][col]}
               style={{
                 width: 50,
                 height: 50,
                 position: 'relative',
                 border: '1px solid #ddd',
                 boxSizing: 'border-box',
+                cursor: 'pointer',
               }}
             >
               <div
-                data-row={row}
-                data-col={col}
-                data-tri="0"
-                className="triangle triangle-top-left"
-                style={{
-                  backgroundColor: color0,
-                  clipPath: 'polygon(0 0, 100% 0, 0 100%)',
-                  position: 'absolute',
-                  width: 50,
-                  height: 50,
-                }}
-                onMouseDown={(e) => handleTriangleMouseDown(e, row, col, 0)}
-                onMouseEnter={(e) => handleTriangleMouseEnter(e, row, col, 0)}
-                onTouchStart={(e) => handleTriangleTouchStart(e, row, col, 0)}
-                onTouchMove={handleTriangleTouchMove}
+                className="triangle"
+                style={{ ...triangleStyle, backgroundColor: color0, clipPath: clip0 }}
               />
               <div
-                data-row={row}
-                data-col={col}
-                data-tri="1"
-                className="triangle triangle-bottom-right"
-                style={{
-                  backgroundColor: color1,
-                  clipPath: 'polygon(100% 0, 100% 100%, 0 100%)',
-                  position: 'absolute',
-                  width: 50,
-                  height: 50,
-                }}
-                onMouseDown={(e) => handleTriangleMouseDown(e, row, col, 1)}
-                onMouseEnter={(e) => handleTriangleMouseEnter(e, row, col, 1)}
-                onTouchStart={(e) => handleTriangleTouchStart(e, row, col, 1)}
-                onTouchMove={handleTriangleTouchMove}
+                className="triangle"
+                style={{ ...triangleStyle, backgroundColor: color1, clipPath: clip1 }}
               />
             </div>
           );
@@ -343,21 +348,16 @@ const Tessellator: React.FC = () => {
           offCtx.fillStyle = t0;
           offCtx.fillRect(x, y, w, h);
         } else {
-          offCtx.beginPath();
-          offCtx.moveTo(x, y);
-          offCtx.lineTo(x + w, y);
-          offCtx.lineTo(x, y + h);
-          offCtx.closePath();
-          offCtx.fillStyle = t0;
-          offCtx.fill();
-
-          offCtx.beginPath();
-          offCtx.moveTo(x + w, y);
-          offCtx.lineTo(x + w, y + h);
-          offCtx.lineTo(x, y + h);
-          offCtx.closePath();
-          offCtx.fillStyle = t1;
-          offCtx.fill();
+          const triangles = triangleVertices(diagonalState[mr][mc], x, y, w, h);
+          [t0, t1].forEach((color, i) => {
+            const [first, ...rest] = triangles[i];
+            offCtx.beginPath();
+            offCtx.moveTo(...first);
+            rest.forEach(point => offCtx.lineTo(...point));
+            offCtx.closePath();
+            offCtx.fillStyle = color;
+            offCtx.fill();
+          });
         }
       }
     }
@@ -378,6 +378,7 @@ const Tessellator: React.FC = () => {
   }, [
     mainGridState,
     tessellationRotationState,
+    diagonalState,
     gridRows,
     gridCols,
     triangleMode,
@@ -447,6 +448,34 @@ const Tessellator: React.FC = () => {
               Triangle Mode
             </label>
           </div>
+
+          {triangleMode && (
+            <div id="diagonal-selector">
+              <label>Diagonal:</label>
+              <label>
+                <input
+                  type="radio"
+                  name="diagonal"
+                  value="/"
+                  aria-label="Split cells top-right to bottom-left"
+                  checked={selectedDiagonal === '/'}
+                  onChange={() => setSelectedDiagonal('/')}
+                />{' '}
+                ╱
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="diagonal"
+                  value={'\\'}
+                  aria-label="Split cells top-left to bottom-right"
+                  checked={selectedDiagonal === '\\'}
+                  onChange={() => setSelectedDiagonal('\\')}
+                />{' '}
+                ╲
+              </label>
+            </div>
+          )}
 
           <div id="grid-rows">
             <label htmlFor="grid-rows-slider">Rows:</label>
@@ -522,8 +551,12 @@ const Tessellator: React.FC = () => {
                 // React's touch listeners are passive, so preventDefault can't stop scrolling while painting
                 touchAction: 'none',
               }}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseUp}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
               onTouchEnd={handleMouseUp}
             >
               {renderMainGrid()}
