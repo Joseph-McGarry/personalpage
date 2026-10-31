@@ -157,7 +157,8 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
-.tessellator-container #mode-selector label {
+.tessellator-container #mode-selector label,
+.tessellator-container #diagonal-selector label {
     margin-right: 10px;
     color: #33FF33;
     font-family: 'Courier New', Courier, monospace;
